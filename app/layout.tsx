@@ -56,6 +56,13 @@ export default function RootLayout({
       className={`${dmSans.variable} ${inter.variable} ${interTight.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        {/* Impact.com media property verification. Rendered raw so the
+            non-standard `value` attribute their crawler checks is preserved;
+            React hoists this into <head>. */}
+        <meta
+          name="impact-site-verification"
+          value="5b80cfb6-29d2-42e8-bdeb-e3aeac02b9eb"
+        />
         {/* Light-only brand direction — the theme is forced site-wide. */}
         <ThemeProvider attribute="class" forcedTheme="light" enableSystem={false}>
           {children}
