@@ -60,8 +60,10 @@ export default function RootLayout({
             non-standard `value` attribute their crawler checks is preserved;
             React hoists this into <head>. */}
         <meta
-          name="impact-site-verification"
-          value="5b80cfb6-29d2-42e8-bdeb-e3aeac02b9eb"
+          {...({
+            name: "impact-site-verification",
+            value: "5b80cfb6-29d2-42e8-bdeb-e3aeac02b9eb",
+          } as Record<string, string>)}
         />
         {/* Light-only brand direction — the theme is forced site-wide. */}
         <ThemeProvider attribute="class" forcedTheme="light" enableSystem={false}>
