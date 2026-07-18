@@ -9,6 +9,7 @@
     "lint": "eslint",
     "seed": "tsx scripts/seed.ts",
     "seed:sage": "tsx scripts/seed-sage.ts",
+    "sage:links": "tsx scripts/set-sage-affiliate-links.ts",
     "seed:sage-reviews": "tsx scripts/seed-sage-reviews.ts",
     "seed:sage-articles": "tsx scripts/seed-sage-articles.ts",
     "seed:quickbooks": "tsx scripts/seed-quickbooks.ts",

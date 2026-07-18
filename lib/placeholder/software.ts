@@ -1,3 +1,4 @@
+import { sageAffiliateUrl } from "@/lib/affiliate";
 import type { Software } from "@/lib/types";
 
 /**
@@ -12,7 +13,7 @@ type SoftwareSeed = Partial<Software> &
   Pick<Software, "id" | "name" | "slug" | "category_id" | "description_short" | "description_full">;
 
 function sw(seed: SoftwareSeed): Software {
-  return {
+  return monetise({
     tagline: null,
     // Real vendor marks live in /public/logos, keyed by slug. Seed scripts
     // push this value to Supabase, so it must be resolved here rather than
@@ -47,7 +48,19 @@ function sw(seed: SoftwareSeed): Software {
     created_at: "2026-01-15T08:00:00.000Z",
     updated_at: "2026-06-20T08:00:00.000Z",
     ...seed,
-  };
+  });
+}
+
+/**
+ * Sage is the one vendor we hold an affiliate contract with, so its outbound
+ * links are monetised here rather than being set per product. Applying it at
+ * the roster level means a Sage product added later is tracked by default,
+ * and /api/track-click resolves the destination the same way for every row.
+ * An explicit affiliate_url on the seed still wins.
+ */
+function monetise(product: Software): Software {
+  if (product.vendor_name !== "Sage" || product.affiliate_url) return product;
+  return { ...product, affiliate_url: sageAffiliateUrl(product.vendor_website) };
 }
 
 export const placeholderSoftware: Software[] = [
