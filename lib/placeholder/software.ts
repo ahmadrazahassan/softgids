@@ -1,4 +1,4 @@
-import { sageAffiliateUrl } from "@/lib/affiliate";
+import { SAGE_AFFILIATE_URL } from "@/lib/affiliate";
 import type { Software } from "@/lib/types";
 
 /**
@@ -60,7 +60,7 @@ function sw(seed: SoftwareSeed): Software {
  */
 function monetise(product: Software): Software {
   if (product.vendor_name !== "Sage" || product.affiliate_url) return product;
-  return { ...product, affiliate_url: sageAffiliateUrl(product.vendor_website) };
+  return { ...product, affiliate_url: SAGE_AFFILIATE_URL };
 }
 
 export const placeholderSoftware: Software[] = [

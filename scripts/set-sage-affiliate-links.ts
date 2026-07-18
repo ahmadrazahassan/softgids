@@ -8,9 +8,9 @@
  * pricing, copy and ratings, which is far more blast radius than a link swap
  * needs against a live database.
  *
- * Destinations come from lib/affiliate.ts, so the deep-link rules (and the
- * shop.sage.co.za carve-out documented there) stay in one place. Idempotent —
- * rows already holding the correct URL are skipped, so reruns are free.
+ * Every Sage product gets the same link, verbatim, from lib/affiliate.ts —
+ * nothing is appended per product. Idempotent: rows already holding the exact
+ * URL are skipped, so reruns are free.
  *
  * To revert: set affiliate_url back to null on the same rows; /api/track-click
  * falls straight back to vendor_website.
@@ -19,7 +19,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { createClient } from "@supabase/supabase-js";
-import { sageAffiliateUrl } from "../lib/affiliate";
+import { SAGE_AFFILIATE_URL } from "../lib/affiliate";
 
 /* ---------- tiny .env.local parser (no dotenv dependency) ---------- */
 function loadEnvLocal() {
@@ -67,10 +67,7 @@ async function main() {
   let skipped = 0;
 
   for (const row of rows) {
-    const target = sageAffiliateUrl(row.vendor_website);
-    const deep = target.includes("?u=");
-
-    if (row.affiliate_url === target) {
+    if (row.affiliate_url === SAGE_AFFILIATE_URL) {
       skipped += 1;
       console.log(`  = ${row.slug} (already current)`);
       continue;
@@ -78,18 +75,18 @@ async function main() {
 
     if (dryRun) {
       written += 1;
-      console.log(`  ~ ${row.slug} -> ${deep ? "deep link" : "programme homepage"}`);
+      console.log(`  ~ ${row.slug}`);
       continue;
     }
 
     const { error: updateError } = await db
       .from("software")
-      .update({ affiliate_url: target })
+      .update({ affiliate_url: SAGE_AFFILIATE_URL })
       .eq("id", row.id);
     if (updateError) throw new Error(`${row.slug}: ${updateError.message}`);
 
     written += 1;
-    console.log(`  + ${row.slug} -> ${deep ? "deep link" : "programme homepage"}`);
+    console.log(`  + ${row.slug}`);
   }
 
   console.log(
