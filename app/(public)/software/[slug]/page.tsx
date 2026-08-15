@@ -31,6 +31,7 @@ import { SentimentBar } from "@/components/public/SentimentBar";
 import { SoftwareLogo } from "@/components/public/SoftwareLogo";
 import { SoftwareRatingsChart } from "@/components/public/SoftwareRatingsChart";
 import { SoftwareSidebar } from "@/components/public/SoftwareSidebar";
+import { SponsoredAd } from "@/components/public/SponsoredAd";
 import { StarRating } from "@/components/public/StarRating";
 import { VerifiedBadges } from "@/components/public/VerifiedBadges";
 import { Badge } from "@/components/ui/badge";
@@ -496,6 +497,9 @@ export default async function SoftwareProfilePage(props: PageProps<"/software/[s
               )}
             </div>
           </section>
+
+          {/* Sponsored */}
+          <SponsoredAd format="billboard" />
 
           {/* Alternatives */}
           {alternatives.length > 0 && (

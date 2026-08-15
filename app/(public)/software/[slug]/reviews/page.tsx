@@ -10,6 +10,7 @@ import { RatingBar } from "@/components/public/RatingBar";
 import { ReviewCard } from "@/components/public/ReviewCard";
 import { ReviewFilters } from "@/components/public/ReviewFilters";
 import { SentimentBar } from "@/components/public/SentimentBar";
+import { SponsoredAd } from "@/components/public/SponsoredAd";
 import { SoftwareLogo } from "@/components/public/SoftwareLogo";
 import { StarRating } from "@/components/public/StarRating";
 import { VerifiedBadges } from "@/components/public/VerifiedBadges";
@@ -141,6 +142,7 @@ export default async function SoftwareReviewsPage(
           </div>
           <SentimentBar distribution={distribution} />
           <VerifiedBadges />
+          <SponsoredAd format="halfpage" className="pt-2" />
         </aside>
 
         {/* Reviews + filters */}
