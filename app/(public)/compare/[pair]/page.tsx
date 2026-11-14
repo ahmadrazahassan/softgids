@@ -189,8 +189,8 @@ export default async function ComparisonPage(props: PageProps<"/compare/[pair]">
                 </div>
                 <div className="w-full max-w-60 space-y-2">
                   <AffiliateCTAButton
-                    slug={software.slug}
-                    vendorName={software.vendor_name}
+                    software={software}
+                    slot="compare-hero"
                     accent={brandColorFor(software)}
                   />
                 </div>
@@ -267,7 +267,8 @@ export default async function ComparisonPage(props: PageProps<"/compare/[pair]">
             <PricingCards
               plans={software.pricing_plans}
               currency={software.price_currency}
-              ctaHref={`/api/track-click?software=${encodeURIComponent(software.slug)}`}
+              software={software}
+              slotPrefix="compare-pricing"
               freeTrial={software.free_trial}
               vendorName={software.vendor_name ?? software.name}
             />

@@ -7,9 +7,12 @@ import {
   Languages,
   Tag,
 } from "lucide-react";
+import { AdLabel } from "@/components/public/AdLabel";
 import { AffiliateDisclosureNote } from "@/components/public/AffiliateDisclosureNote";
+import { AffiliateLink } from "@/components/public/AffiliateLink";
 import { CountryFlag } from "@/components/public/CountryFlag";
 import { Badge } from "@/components/ui/badge";
+import { outboundLink } from "@/lib/affiliate";
 import { startingPriceLabel } from "@/lib/format";
 import type { Software } from "@/lib/types";
 
@@ -39,6 +42,7 @@ function FactTile({
  */
 export function SoftwareSidebar({ software }: { software: Software }) {
   const price = startingPriceLabel(software);
+  const link = outboundLink(software, "software-hero");
 
   return (
     <div className="rounded-[1.75rem] bg-zinc-100/80 p-2 dark:bg-zinc-900/60">
@@ -100,20 +104,25 @@ export function SoftwareSidebar({ software }: { software: Software }) {
           </div>
           <AffiliateDisclosureNote />
         </div>
-        <a
-          href={`/api/track-click?software=${encodeURIComponent(software.slug)}`}
-          target="_blank"
-          rel="noopener noreferrer sponsored"
-          className="btn-glossy btn-glossy-dark group/cta relative inline-flex h-12 shrink-0 items-center overflow-hidden px-14 text-sm"
-        >
-          <span
-            aria-hidden="true"
-            className="absolute inset-y-1.5 left-1.5 grid w-10 place-items-center rounded-[0.55rem] bg-[var(--color-brand)] text-[var(--color-brand-ink)] transition-[left,background-color] duration-300 ease-out group-hover/cta:left-[calc(100%-2.875rem)] group-hover/cta:bg-transparent"
-          >
-            <ArrowRight className="size-4" />
+        {link && (
+          <span className="flex shrink-0 flex-col items-center gap-1.5">
+            <AffiliateLink
+              link={link}
+              action={`Visit ${software.vendor_name ?? software.name} website`}
+              slug={software.slug}
+              className="btn-glossy btn-glossy-dark group/cta relative inline-flex h-12 shrink-0 items-center overflow-hidden px-14 text-sm"
+            >
+              <span
+                aria-hidden="true"
+                className="absolute inset-y-1.5 left-1.5 grid w-10 place-items-center rounded-[0.55rem] bg-[var(--color-brand)] text-[var(--color-brand-ink)] transition-[left,background-color] duration-300 ease-out group-hover/cta:left-[calc(100%-2.875rem)] group-hover/cta:bg-transparent"
+              >
+                <ArrowRight className="size-4" />
+              </span>
+              Visit {software.vendor_name ?? software.name} website
+            </AffiliateLink>
+            {link.kind === "affiliate" && <AdLabel />}
           </span>
-          Visit {software.vendor_name ?? software.name} website
-        </a>
+        )}
       </div>
     </div>
   );

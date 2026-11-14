@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
+import { AdLabel } from "@/components/public/AdLabel";
+import { AffiliateLink } from "@/components/public/AffiliateLink";
+import { outboundLink } from "@/lib/affiliate";
 import { ReviewSentiment } from "@/components/public/ReviewSentiment";
 import { StarRating } from "@/components/public/StarRating";
 import { SoftwareLogo } from "@/components/public/SoftwareLogo";
@@ -24,18 +27,26 @@ export function SoftwareCard({
   software,
   categoryName,
   distribution,
+  slot = "card",
   className,
 }: {
   software: Software;
   categoryName?: string;
   /** Live star distribution; when provided the card shows review sentiment. */
   distribution?: RatingDistribution;
+  /**
+   * Where this card sits, for the affiliate placement ID — "home-card",
+   * "explore-card", "blog-card". Defaults to a generic "card" so a new
+   * surface still reports something rather than nothing.
+   */
+  slot?: string;
   className?: string;
 }) {
   const accent = brandColorFor(software);
   const price = startingPriceLabel(software);
   const best = topDimension(software);
   const profileHref = `/software/${software.slug}`;
+  const link = outboundLink(software, slot);
 
   return (
     <article
@@ -119,29 +130,34 @@ export function SoftwareCard({
       </div>
 
       {/* Actions — glossy rounded rectangles from the shared shell */}
-      <div className="mt-auto grid grid-cols-2 gap-3">
-        <Link
-          href={profileHref}
-          className="btn-glossy btn-glossy-white inline-flex h-11 items-center justify-center text-sm"
-        >
-          View profile
-        </Link>
-        <a
-          href={`/api/track-click?software=${encodeURIComponent(software.slug)}`}
-          target="_blank"
-          rel="noopener noreferrer sponsored"
-          className="btn-glossy inline-flex h-11 items-center justify-center gap-1.5 px-4 text-sm"
-          style={
-            {
-              "--btn-bg": accent,
-              "--btn-ink": "#ffffff",
-              "--btn-glow": `color-mix(in srgb, ${accent} 55%, transparent)`,
-            } as React.CSSProperties
-          }
-        >
-          Visit website
-          <ExternalLink className="size-4" aria-hidden="true" />
-        </a>
+      <div className="mt-auto space-y-2">
+        <div className={cn("grid gap-3", link ? "grid-cols-2" : "grid-cols-1")}>
+          <Link
+            href={profileHref}
+            className="btn-glossy btn-glossy-white inline-flex h-11 items-center justify-center text-sm"
+          >
+            View profile
+          </Link>
+          {link && (
+            <AffiliateLink
+              link={link}
+              action={`Visit ${software.vendor_name ?? software.name} website`}
+              slug={software.slug}
+              className="btn-glossy inline-flex h-11 items-center justify-center gap-1.5 px-4 text-sm"
+              style={
+                {
+                  "--btn-bg": accent,
+                  "--btn-ink": "#ffffff",
+                  "--btn-glow": `color-mix(in srgb, ${accent} 55%, transparent)`,
+                } as React.CSSProperties
+              }
+            >
+              Visit website
+              <ExternalLink className="size-4" aria-hidden="true" />
+            </AffiliateLink>
+          )}
+        </div>
+        {link?.kind === "affiliate" && <AdLabel className="block text-center" />}
       </div>
     </article>
   );

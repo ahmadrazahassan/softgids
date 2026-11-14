@@ -54,9 +54,11 @@ function sw(seed: SoftwareSeed): Software {
 /**
  * Sage is the one vendor we hold an affiliate contract with, so its outbound
  * links are monetised here rather than being set per product. Applying it at
- * the roster level means a Sage product added later is tracked by default,
- * and /api/track-click resolves the destination the same way for every row.
+ * the roster level means a Sage product added later is tracked by default.
  * An explicit affiliate_url on the seed still wins.
+ *
+ * The value marks the row as monetised; the href actually rendered is built by
+ * `outboundLink()` in lib/affiliate.ts, which adds the placement ID.
  */
 function monetise(product: Software): Software {
   if (product.vendor_name !== "Sage" || product.affiliate_url) return product;

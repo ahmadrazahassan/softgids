@@ -40,7 +40,7 @@ export function HomepageExplore({
         <TabsContent key={category.slug} value={category.slug} className="space-y-8">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {(softwareByCategory[category.slug] ?? []).slice(0, 3).map((software) => (
-              <SoftwareCard key={software.id} software={software} />
+              <SoftwareCard key={software.id} software={software} slot="explore-card" />
             ))}
           </div>
           <div className="text-center">

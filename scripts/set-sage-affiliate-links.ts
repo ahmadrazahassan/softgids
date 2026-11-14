@@ -12,8 +12,13 @@
  * nothing is appended per product. Idempotent: rows already holding the exact
  * URL are skipped, so reruns are free.
  *
- * To revert: set affiliate_url back to null on the same rows; /api/track-click
- * falls straight back to vendor_website.
+ * Note what this column does and does not do. Rendering never reads
+ * `affiliate_url` for an href; `outboundLink()` resolves the programme from
+ * lib/affiliate.ts and adds the placement ID. A non-null value here is what
+ * marks a row as monetised.
+ *
+ * To revert: set affiliate_url back to null on the same rows. Those products
+ * then render a plain `nofollow` link to vendor_website instead.
  */
 
 import { readFileSync } from "node:fs";

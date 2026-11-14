@@ -5,18 +5,21 @@ import { cn } from "@/lib/utils";
 /**
  * Signature product CTA — a glossy, lit button tinted to the product's brand
  * accent: a top-light gradient, an inner sheen highlight, and a soft coloured
- * glow. Renders a Next link internally or a tracked anchor when `external`.
+ * glow.
+ *
+ * Internal navigation only. It used to carry an `external` branch that
+ * hand-wrote a sponsored rel including noreferrer, which was both unused and
+ * referrer-destroying. Outbound vendor links belong to AffiliateCTAButton or
+ * AffiliateLink, which get their attributes from lib/affiliate.ts.
  */
 export function GlossyCTA({
   href,
   accent,
-  external,
   className,
   children,
 }: {
   href: string;
   accent: string;
-  external?: boolean;
   className?: string;
   children: React.ReactNode;
 }) {
@@ -50,19 +53,6 @@ export function GlossyCTA({
     </>
   );
 
-  if (external) {
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer sponsored"
-        className={classes}
-        style={style}
-      >
-        {inner}
-      </a>
-    );
-  }
   return (
     <Link href={href} className={classes} style={style}>
       {inner}

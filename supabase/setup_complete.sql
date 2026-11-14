@@ -222,10 +222,13 @@ create table if not exists affiliate_clicks (
   ip_hash text,
   user_agent text,
   referrer text,
-  country_code text
+  country_code text,
+  -- Which button or banner was clicked. Same value we send Impact as subId1.
+  placement text
 );
 
 create index if not exists affiliate_clicks_software_idx on affiliate_clicks (software_id, clicked_at desc);
+create index if not exists affiliate_clicks_placement_idx on affiliate_clicks (placement, clicked_at desc);
 create index if not exists affiliate_clicks_time_idx on affiliate_clicks (clicked_at desc);
 
 create table if not exists site_settings (

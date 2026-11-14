@@ -1,4 +1,7 @@
 import { ArrowRight, Check, Plus } from "lucide-react";
+import { AdLabel } from "@/components/public/AdLabel";
+import { AffiliateLink } from "@/components/public/AffiliateLink";
+import { outboundLink, type AffiliateTarget, type OutboundLink } from "@/lib/affiliate";
 import { formatPrice } from "@/lib/format";
 import type { PricingPlan } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -38,19 +41,23 @@ function FeatureIcon({ feature }: { feature: string }) {
  * to lime with a dark ring, exactly like the reference hover state.
  */
 function PlanCTA({
-  href,
+  link,
+  action,
+  slug,
   label,
   featured,
 }: {
-  href: string;
+  link: OutboundLink;
+  action: string;
+  slug?: string | null;
   label: string;
   featured?: boolean;
 }) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer sponsored"
+    <AffiliateLink
+      link={link}
+      action={action}
+      slug={slug}
       className={cn(
         "group/cta relative flex h-12 w-full items-center overflow-hidden",
         featured ? "btn-glossy btn-glossy-dark" : "btn-glossy btn-glossy-white"
@@ -70,7 +77,7 @@ function PlanCTA({
         <ArrowRight className="size-4" />
       </span>
       <span className="w-full px-12 text-center text-sm font-semibold">{label}</span>
-    </a>
+    </AffiliateLink>
   );
 }
 
@@ -83,18 +90,34 @@ function PlanCTA({
 export function PricingCards({
   plans,
   currency,
-  ctaHref,
+  software,
+  slotPrefix,
   freeTrial,
   vendorName,
 }: {
   plans: PricingPlan[];
   currency: string;
-  /** Outbound tracked vendor link; renders the plan CTAs and the footer band. */
-  ctaHref?: string;
+  /**
+   * The product these plans belong to. Supplying it renders the plan CTAs and
+   * the vendor band as outbound links, resolved through lib/affiliate.ts.
+   */
+  software?: AffiliateTarget & { name?: string | null };
+  /**
+   * Prefix for the placement IDs, naming where this block sits — e.g.
+   * "software-pricing" gives "software-pricing-plan-<slug>" on the plan CTAs
+   * and "software-pricing-band-<slug>" on the closing band, so Impact
+   * reporting tells the two apart.
+   */
+  slotPrefix?: string;
   freeTrial?: boolean;
   vendorName?: string | null;
 }) {
   if (plans.length === 0) return null;
+
+  const prefix = slotPrefix ?? "pricing";
+  const planLink = software ? outboundLink(software, `${prefix}-plan`) : null;
+  const bandLink = software ? outboundLink(software, `${prefix}-band`) : null;
+  const vendor = vendorName ?? software?.name ?? "vendor";
 
   return (
     <div className="rounded-[1.75rem] bg-zinc-100/80 p-2 dark:bg-zinc-900/60">
@@ -135,12 +158,19 @@ export function PricingCards({
               <p className="mt-3 text-xs text-muted-foreground">{planPeriod(plan)}</p>
             </div>
 
-            {ctaHref && (
-              <PlanCTA
-                href={ctaHref}
-                label={ctaLabel(plan, freeTrial)}
-                featured={plan.highlighted}
-              />
+            {planLink && (
+              <>
+                <PlanCTA
+                  link={planLink}
+                  action={`${ctaLabel(plan, freeTrial)} with ${vendor}, ${plan.name} plan`}
+                  slug={software?.slug}
+                  label={ctaLabel(plan, freeTrial)}
+                  featured={plan.highlighted}
+                />
+                {planLink.kind === "affiliate" && (
+                  <AdLabel className="mt-1.5 block text-center" />
+                )}
+              </>
             )}
 
             {/* Feature ledger — hairlines between rows, + adds, ✓ inherits */}
@@ -159,7 +189,7 @@ export function PricingCards({
       </div>
 
       {/* Vendor band — lives on the backplate itself, like the reference */}
-      {ctaHref && (
+      {bandLink && (
         <div className="flex flex-col gap-6 px-6 py-7 sm:flex-row sm:items-center sm:justify-between sm:px-7">
           <div className="max-w-lg space-y-2">
             <p className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200/90 bg-card px-3 py-1 text-[0.65rem] font-bold tracking-widest text-muted-foreground uppercase dark:border-zinc-700">
@@ -168,23 +198,26 @@ export function PricingCards({
             <h3 className="font-heading text-2xl font-bold tracking-tight">Get current pricing</h3>
             <p className="text-sm leading-relaxed text-muted-foreground">
               These are list prices in rand and vendors adjust them from time to time. Check with{" "}
-              {vendorName ?? "the vendor"}{" "}for the figure you&apos;ll actually pay.
+              {vendor}{" "}for the figure you&apos;ll actually pay.
             </p>
           </div>
-          <a
-            href={ctaHref}
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-            className="btn-glossy btn-glossy-dark group/cta relative inline-flex h-12 shrink-0 items-center overflow-hidden px-14 text-sm"
-          >
-            <span
-              aria-hidden="true"
-              className="absolute inset-y-1.5 left-1.5 grid w-10 place-items-center rounded-[0.55rem] bg-[var(--color-brand)] text-[var(--color-brand-ink)] transition-[left,background-color] duration-300 ease-out group-hover/cta:left-[calc(100%-2.875rem)] group-hover/cta:bg-transparent"
+          <span className="flex shrink-0 flex-col items-center gap-1.5">
+            <AffiliateLink
+              link={bandLink}
+              action={`Visit ${vendor}`}
+              slug={software?.slug}
+              className="btn-glossy btn-glossy-dark group/cta relative inline-flex h-12 shrink-0 items-center overflow-hidden px-14 text-sm"
             >
-              <ArrowRight className="size-4" />
-            </span>
-            Visit {vendorName ?? "vendor"}
-          </a>
+              <span
+                aria-hidden="true"
+                className="absolute inset-y-1.5 left-1.5 grid w-10 place-items-center rounded-[0.55rem] bg-[var(--color-brand)] text-[var(--color-brand-ink)] transition-[left,background-color] duration-300 ease-out group-hover/cta:left-[calc(100%-2.875rem)] group-hover/cta:bg-transparent"
+              >
+                <ArrowRight className="size-4" />
+              </span>
+              Visit {vendor}
+            </AffiliateLink>
+            {bandLink.kind === "affiliate" && <AdLabel />}
+          </span>
         </div>
       )}
     </div>

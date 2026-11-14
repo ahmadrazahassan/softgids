@@ -39,9 +39,11 @@ export function CompareStickyBar({ a, b }: { a: Software; b: Software }) {
                 </p>
               </div>
               <AffiliateCTAButton
-                slug={software.slug}
+                software={software}
+                slot="compare-sticky"
                 accent={brandColorFor(software)}
-                className="w-auto flex-1 rounded-xl px-3 py-2 text-xs sm:flex-none"
+                className="w-auto rounded-xl px-3 py-2 text-xs"
+                wrapperClassName="flex-1 sm:flex-none"
               >
                 Visit site
               </AffiliateCTAButton>

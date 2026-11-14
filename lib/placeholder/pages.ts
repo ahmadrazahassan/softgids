@@ -33,6 +33,16 @@ export const placeholderPages: Page[] = [
 <p>In keeping with section 69 of POPIA, we only send marketing email to people who have asked to receive it. We confirm every subscription by email first, we keep a record of that consent, and every newsletter carries a one click way to leave. No hard feelings if you do.</p>
 <h2>The partners who help us run the site</h2>
 <p>We rely on a small number of trusted providers for hosting, our database and email delivery. Under POPIA these are our operators. They only ever handle your information on our instructions, and they may not use it for their own ends. We do not sell your personal information to anyone, and we never will.</p>
+<h2>Affiliate links and the advertising network</h2>
+<p>Some of the links and banners on this site are affiliate links. We run them through impact.com, the affiliate network that administers the Sage programme on our behalf. Every one of them is marked "Sponsored" where you can see it, and our <a href="/affiliate-disclosure">Affiliate Disclosure</a> sets out the arrangement in full.</p>
+<p>When you click one of those links your browser goes to impact.com first, and then on to the vendor. At that moment your browser hands impact.com three things:</p>
+<ul>
+<li><strong>Your IP address</strong>, together with your browser and device details, exactly as it would for any website you visit.</li>
+<li><strong>Our domain name</strong>, softgids.co.za, as the referring site. We send only the domain. We do not send the address of the page you were reading, or anything you typed into the search box.</li>
+<li><strong>A placement code</strong>, a short label such as "software-hero-sage-accounting", which tells us which button or banner you used. It describes a spot on a page and says nothing about you.</li>
+</ul>
+<p>impact.com may set a cookie in your browser at that point, so that the vendor can credit the referral if you go on to buy. That cookie is theirs, set under their own privacy policy, and we cannot read it.</p>
+<p>The sponsored banners are images served from impact.com's own servers, which means your IP address reaches them whenever a page carrying one loads, whether or not you click it. Beyond those banner images we place no separate tracking or impression pixels of our own.</p>
 <h2>Information that leaves South Africa</h2>
 <p>Some of our providers store data on servers outside the country. Where that happens, we make sure the information is protected by laws or binding agreements that offer a standard of care comparable to POPIA, as section 72 requires.</p>
 <h2>Keeping it safe, and letting it go</h2>
@@ -57,7 +67,7 @@ export const placeholderPages: Page[] = [
 </table>
 <p>We do not run advertising cookies, and we do not follow you around other websites. That is a deliberate choice.</p>
 <h2>Affiliate links</h2>
-<p>When you follow a link to a software vendor, we record that click on our own server against a scrambled version of your IP address, purely so we can report on it in aggregate. Once you land on the vendor site, that company may set its own cookies under its own policies, which are outside our control.</p>
+<p>When you follow a link to a software vendor, we record that click on our own server against a scrambled version of your IP address, purely so we can report on it in aggregate. Sponsored links pass through impact.com, our affiliate network, which may set a cookie of its own so the vendor can credit the referral. Once you land on the vendor site, that company may also set its own cookies. Both sit under their own policies and are outside our control. The <a href="/privacy-policy">Privacy Policy</a> spells out what your browser sends them.</p>
 <h2>Staying in charge</h2>
 <p>You can clear or block cookies at any time in your browser settings. Do bear in mind that blocking the essential ones may switch off small conveniences, such as remembering the theme you like.</p>
 <h2>Talk to us</h2>
@@ -96,7 +106,8 @@ export const placeholderPages: Page[] = [
     title: "Affiliate Disclosure",
     content: `<p>We would rather be plain with you than clever about it, so here is exactly how SoftGids pays its way.</p>
 <h2>How we earn</h2>
-<p>When you follow a link from our site to a software vendor and go on to buy, we may receive a referral commission. Those are the affiliate links you will see marked around the platform. The vendor pays the commission, and it never adds a cent to your price.</p>
+<p>When you follow a link from our site to a software vendor and go on to buy, we may receive a referral commission. The vendor pays the commission, and it never adds a cent to your price.</p>
+<p>Every link and banner of that kind is marked "Sponsored" where you can see it, and a screen reader announces it the same way. They are handled by impact.com, the affiliate network that administers the Sage programme for us. Clicking one lets impact.com set a cookie so the vendor can credit the referral, and it tells us which button or banner you used so we know which ones are actually useful. Our <a href="/privacy-policy">Privacy Policy</a> lists exactly what your browser passes on.</p>
 <h2>What that money never buys</h2>
 <ul>
 <li>Ratings. Every star rating is worked out automatically from verified user reviews, and nothing else.</li>

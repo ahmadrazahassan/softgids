@@ -1,68 +1,103 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { affiliateHref, isValidPlacement } from "@/lib/affiliate";
 import { createAdminClient, hashIp } from "@/lib/supabase/admin";
-import { placeholderSoftware } from "@/lib/placeholder";
-import { siteUrl } from "@/lib/site";
 
 /**
- * Affiliate click tracking + redirect. The single source for outbound vendor
- * URLs — the frontend never hardcodes them. Logs a HASHED IP (never raw),
- * then redirects the visitor to `affiliate_url || vendor_website`.
+ * First-party click log. Receives a `navigator.sendBeacon` POST from
+ * AffiliateClickBeacon and records the click for the admin analytics.
  *
- * Phase 1: full redirect behaviour with placeholder data when Supabase is
- * unset; click logging activates with the database in Phase 2.
+ * This route used to be the href itself: a GET that logged, then 307'd to the
+ * vendor. It no longer redirects anything. Affiliate anchors now point straight
+ * at the Impact tracking link, so the click never waits on this route, never
+ * loses the referrer to an extra hop, and still works with JavaScript off.
+ * Logging is bookkeeping that happens alongside the navigation, not in front
+ * of it. Removing the redirect also means a crawler can no longer manufacture
+ * a click by following a link on our own domain.
+ *
+ * Every path returns 204. A beacon has no UI to surface an error to, and a
+ * failed log must never be mistaken for a failed click. Nothing here is
+ * trusted from the client beyond a slug and a placement ID, both validated;
+ * the destination URL is rebuilt server-side from lib/affiliate.ts rather than
+ * accepted from the request.
  */
-/**
- * Redirect with caching disabled. A cached hop would let later clicks skip the
- * server entirely — undercounting clicks, and pinning visitors to a stale
- * destination after an affiliate link changes.
- */
-function redirect(destination: string) {
-  const response = NextResponse.redirect(destination);
-  response.headers.set("Cache-Control", "no-store, max-age=0");
-  return response;
-}
 
-export async function GET(request: NextRequest) {
-  const slug = request.nextUrl.searchParams.get("software")?.trim();
-  if (!slug) return redirect(siteUrl);
+type Beacon = {
+  kind?: unknown;
+  placement?: unknown;
+  slug?: unknown;
+  path?: unknown;
+};
 
-  // Preview mode — resolve the destination from placeholder data, no logging.
-  const admin = createAdminClient();
-  if (!admin) {
-    const software = placeholderSoftware.find((s) => s.slug === slug);
-    const destination = software?.affiliate_url || software?.vendor_website;
-    return redirect(destination || siteUrl);
+const noContent = () => new NextResponse(null, { status: 204 });
+
+export async function POST(request: NextRequest) {
+  let body: Beacon;
+  try {
+    body = (await request.json()) as Beacon;
+  } catch {
+    return noContent();
   }
+
+  const kind =
+    body.kind === "affiliate" || body.kind === "plain" ? body.kind : null;
+  if (!kind) return noContent();
+
+  const slug = typeof body.slug === "string" ? body.slug.trim() : "";
+  if (!slug) return noContent();
+
+  // An affiliate click without a valid placement is a bug upstream, not
+  // something to guess at. Drop it rather than log a row we cannot attribute.
+  const placement =
+    typeof body.placement === "string" && isValidPlacement(body.placement)
+      ? body.placement
+      : null;
+  if (kind === "affiliate" && !placement) return noContent();
+
+  const admin = createAdminClient();
+  if (!admin) return noContent(); // Preview mode: no database to log to.
 
   const { data: software } = await admin
     .from("software")
-    .select("id, name, affiliate_url, vendor_website")
+    .select("id, name, vendor_website")
     .eq("slug", slug)
     .maybeSingle();
+  if (!software) return noContent();
 
-  const destination = software?.affiliate_url || software?.vendor_website;
-  if (!software || !destination) return redirect(siteUrl);
+  // Rebuilt here, never taken from the beacon, so a tampered payload cannot
+  // write an arbitrary URL into our own reporting.
+  const destination = placement
+    ? affiliateHref("sage", placement)
+    : software.vendor_website;
+  if (!destination) return noContent();
 
-  const ipHash = hashIp(request.headers.get("x-forwarded-for")?.split(",")[0]);
+  const row = {
+    software_id: software.id,
+    software_name: software.name,
+    affiliate_url: destination,
+    ip_hash: hashIp(request.headers.get("x-forwarded-for")?.split(",")[0]),
+    user_agent: request.headers.get("user-agent")?.slice(0, 500) ?? null,
+    referrer: request.headers.get("referer")?.slice(0, 500) ?? null,
+    country_code: request.headers.get("x-vercel-ip-country") ?? null,
+  };
 
-  // Analytics must never cost us the click. A throwing insert (Supabase
-  // unreachable, schema drift, RLS change) would 500 the route and strand the
-  // visitor short of the vendor, losing the commission to save a log row.
-  // Swallow it and still redirect — an undercounted click beats a lost one.
   try {
-    const { error } = await admin.from("affiliate_clicks").insert({
-      software_id: software.id,
-      software_name: software.name,
-      affiliate_url: destination,
-      ip_hash: ipHash,
-      user_agent: request.headers.get("user-agent")?.slice(0, 500) ?? null,
-      referrer: request.headers.get("referer")?.slice(0, 500) ?? null,
-      country_code: request.headers.get("x-vercel-ip-country") ?? null,
-    });
-    if (error) console.error(`track-click: log failed for ${slug}: ${error.message}`);
+    const { error } = await admin
+      .from("affiliate_clicks")
+      .insert({ ...row, placement });
+
+    // The `placement` column arrives with migration 008. Until that has been
+    // applied, insert the row without it rather than lose the click entirely.
+    if (error?.code === "PGRST204" || /placement/i.test(error?.message ?? "")) {
+      const retry = await admin.from("affiliate_clicks").insert(row);
+      if (retry.error) {
+        console.error(`track-click: log failed for ${slug}: ${retry.error.message}`);
+      }
+    } else if (error) {
+      console.error(`track-click: log failed for ${slug}: ${error.message}`);
+    }
   } catch (err) {
     console.error(`track-click: log threw for ${slug}:`, err);
   }
 
-  return redirect(destination);
+  return noContent();
 }

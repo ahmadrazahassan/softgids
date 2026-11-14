@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/public/Navbar";
 import { Footer } from "@/components/public/Footer";
+import { AffiliateClickBeacon } from "@/components/public/AffiliateClickBeacon";
 import {
   getCategories,
   getLatestArticles,
@@ -33,6 +34,7 @@ export default async function PublicLayout({
       <Navbar searchIndex={searchIndex} />
       <main className="flex-1">{children}</main>
       <Footer categories={categories} popularSoftware={popularSoftware} settings={settings} />
+      <AffiliateClickBeacon />
     </div>
   );
 }

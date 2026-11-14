@@ -275,6 +275,7 @@ export default async function HomePage() {
                   software.category_id ? categoryNameById.get(software.category_id) : undefined
                 }
                 distribution={distributionById.get(software.id)}
+                slot="home-card"
               />
             </div>
           ))}

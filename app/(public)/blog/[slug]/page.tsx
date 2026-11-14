@@ -142,7 +142,7 @@ export default async function ArticlePage(props: PageProps<"/blog/[slug]">) {
             </h2>
           </div>
           <div className="mx-auto max-w-sm">
-            <SoftwareCard software={article.related_software} />
+            <SoftwareCard software={article.related_software} slot="blog-card" />
           </div>
         </section>
       )}

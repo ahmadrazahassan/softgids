@@ -275,7 +275,8 @@ export default async function SoftwareProfilePage(props: PageProps<"/software/[s
               <PricingCards
                 plans={software.pricing_plans}
                 currency={software.price_currency}
-                ctaHref={`/api/track-click?software=${encodeURIComponent(software.slug)}`}
+                software={software}
+                slotPrefix="software-pricing"
                 freeTrial={software.free_trial}
                 vendorName={software.vendor_name ?? software.name}
               />
@@ -499,7 +500,11 @@ export default async function SoftwareProfilePage(props: PageProps<"/software/[s
           </section>
 
           {/* Sponsored */}
-          <SponsoredAd format="billboard" />
+          <SponsoredAd
+            format="billboard"
+            slot="software-billboard"
+            slug={software.slug}
+          />
 
           {/* Alternatives */}
           {alternatives.length > 0 && (

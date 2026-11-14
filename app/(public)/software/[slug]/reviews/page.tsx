@@ -142,7 +142,12 @@ export default async function SoftwareReviewsPage(
           </div>
           <SentimentBar distribution={distribution} />
           <VerifiedBadges />
-          <SponsoredAd format="halfpage" className="pt-2" />
+          <SponsoredAd
+            format="halfpage"
+            slot="reviews-halfpage"
+            slug={software.slug}
+            className="pt-2"
+          />
         </aside>
 
         {/* Reviews + filters */}
