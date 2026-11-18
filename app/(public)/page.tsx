@@ -15,7 +15,6 @@ import {
   getLatestArticles,
   getPublishedComparisons,
   getRecentlyUpdatedSoftware,
-  getSiteStats,
   getRatingDistribution,
   getSoftwareList,
 } from "@/lib/supabase/queries";
@@ -71,13 +70,12 @@ function SectionHeader({
 }
 
 export default async function HomePage() {
-  const [categories, comparisons, recent, articles, stats, directory] =
+  const [categories, comparisons, recent, articles, directory] =
     await Promise.all([
       getCategories(),
       getPublishedComparisons(),
       getRecentlyUpdatedSoftware(3),
       getLatestArticles(3),
-      getSiteStats(),
       getSoftwareList({ perPage: 60 }),
     ]);
 
@@ -116,24 +114,6 @@ export default async function HomePage() {
   const categoryNameById = new Map(
     categories.map((c) => [c.id, c.name.replace(" Software", "")])
   );
-
-  const heroStats = [
-    {
-      icon: "/assets/shape-cube-pink.png",
-      value: formatNumber(stats.reviews),
-      label: "Verified reviews",
-    },
-    {
-      icon: "/assets/shape-cylinder.png",
-      value: `${formatNumber(stats.software)}+`,
-      label: "Software listed",
-    },
-    {
-      icon: "/assets/shape-cube-blue.png",
-      value: formatNumber(stats.categories),
-      label: "Categories covered",
-    },
-  ];
 
   return (
     <div className="space-y-16 pb-16 sm:space-y-24 sm:pb-24">
@@ -215,30 +195,6 @@ export default async function HomePage() {
               </div>
             </div>
           </div>
-
-          {/* Stats bar */}
-          <dl className="card-modern relative z-10 mx-auto -mt-8 grid w-[min(100%,64rem)] grid-cols-1 divide-y divide-zinc-100 rounded-[1.5rem] bg-card px-5 py-4 sm:-mt-10 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:rounded-[2rem] sm:px-8 sm:py-7 dark:divide-zinc-800">
-            {heroStats.map(({ icon, value, label }) => (
-              <div key={label} className="flex items-center justify-center gap-4 py-3.5 sm:gap-5 sm:py-0">
-                <Image
-                  src={icon}
-                  alt=""
-                  width={64}
-                  height={64}
-                  aria-hidden="true"
-                  className="size-12 shrink-0 object-contain drop-shadow-[0_10px_15px_rgba(15,23,42,0.2)] sm:size-14"
-                />
-                <div className="text-left">
-                  <dd className="font-heading text-2xl font-extrabold tabular-nums tracking-tight sm:text-3xl">
-                    {value}
-                  </dd>
-                  <dt className="text-[0.7rem] font-bold tracking-widest text-muted-foreground uppercase sm:text-xs">
-                    {label}
-                  </dt>
-                </div>
-              </div>
-            ))}
-          </dl>
         </div>
       </section>
 
