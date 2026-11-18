@@ -1,4 +1,4 @@
-import { SAGE_AFFILIATE_URL } from "@/lib/affiliate";
+import { SAGE_AFFILIATE_URL, programForSlug } from "@/lib/affiliate";
 import type { Software } from "@/lib/types";
 
 /**
@@ -52,16 +52,19 @@ function sw(seed: SoftwareSeed): Software {
 }
 
 /**
- * Sage is the one vendor we hold an affiliate contract with, so its outbound
- * links are monetised here rather than being set per product. Applying it at
- * the roster level means a Sage product added later is tracked by default.
- * An explicit affiliate_url on the seed still wins.
+ * Marks the rows the affiliate programme actually covers.
  *
- * The value marks the row as monetised; the href actually rendered is built by
- * `outboundLink()` in lib/affiliate.ts, which adds the placement ID.
+ * Scoped per product, not per vendor. The Impact campaign sells Sage
+ * Accounting; every creative lands on an accounting page. Monetising the whole
+ * Sage catalogue meant a reader on Sage X3 or Sage CRM clicked through to an
+ * accounting offer, which is the wrong product to send them to.
+ *
+ * `programForSlug` in lib/affiliate.ts is the single source of truth, and it is
+ * also what decides the rendered href, so a value here can never widen the
+ * programme on its own.
  */
 function monetise(product: Software): Software {
-  if (product.vendor_name !== "Sage" || product.affiliate_url) return product;
+  if (product.affiliate_url || !programForSlug(product.slug)) return product;
   return { ...product, affiliate_url: SAGE_AFFILIATE_URL };
 }
 
@@ -75,23 +78,25 @@ export const placeholderSoftware: Software[] = [
     tagline: "Online accounting that thousands of South African small businesses run on every day",
     description_short:
       "Cloud accounting with quoting, invoicing, automatic bank feeds and VAT returns calculated at the standard 15% rate for SARS.",
-    description_full: `<p>Sage Accounting, which many local business owners still know as Sage One or Sage Business Cloud Accounting, is one of the most widely used online accounting products in South Africa. The localisation is genuine rather than bolted on. VAT is calculated at the standard 15% rate, VAT returns are prepared in a format that lines up with what SARS expects on eFiling, and bank feeds pull transactions in from the major South African banks so reconciliation becomes a matter of confirming matches instead of capturing statements by hand.</p><p>Day to day, owners use it to send quotes, convert them to invoices, capture supplier bills and keep an eye on who owes them money. Accountants and bookkeepers get their own access, which is a big part of why so many local practices recommend it to clients. When payroll enters the picture, Sage Business Cloud Payroll connects directly and posts its journals into the books.</p><p>Pricing is refreshingly clear for the local market. Accounting Start costs R240 per month including VAT and covers one user who needs quoting, invoicing and banking. Accounting Standard costs from R435 per month including VAT, starts at two users and one company, and adds full bookkeeping, VAT returns and stock. You can bolt on extras as you grow: additional users at R75 per month, an extra company at R410, advanced inventory at R415, Debtors Manager at R290, time tracking at R165 and foreign currency processing at R165. Every new subscription starts with a 30 day free trial, and Sage offers a full refund within 30 days of purchase if the product turns out not to fit.</p>`,
-    starting_price: 240,
+    description_full: `<p>Sage Accounting, which many local business owners still know as Sage One or Sage Business Cloud Accounting, is one of the most widely used online accounting products in South Africa. The localisation is genuine rather than bolted on. VAT is calculated at the standard 15% rate, VAT returns are prepared in a format that lines up with what SARS expects on eFiling, and bank feeds pull transactions in from the major South African banks so reconciliation becomes a matter of confirming matches instead of capturing statements by hand.</p><p>Day to day, owners use it to send quotes, convert them to invoices, capture supplier bills and keep an eye on who owes them money. Accountants and bookkeepers get their own access, which is a big part of why so many local practices recommend it to clients. When payroll enters the picture, Sage Payroll connects directly and posts its journals into the books.</p><p>Pricing is refreshingly clear for the local market. Start costs from R270 per month including VAT and covers a single user who needs quoting, invoicing and banking. Standard costs from R490 per month including VAT, covers two to five users, and adds full bookkeeping, VAT returns and stock. You can bolt on extras as you grow: additional users at R85 per month, an extra company at R460, advanced inventory at R465, Debtors Manager at R325, time tracking at R185, multi currency payments at R185 and an extra gigabyte of storage at R20. Every new subscription starts with a 30 day free trial, and there is no long term contract.</p>`,
+    starting_price: 270,
     free_trial: true,
     pricing_plans: [
       {
-        name: "Accounting Start",
-        price: 240,
+        name: "Start",
+        price: 270,
         period: "month",
-        description: "Quoting, invoicing and banking for one user. Price includes VAT.",
+        description:
+          "For VAT registered sole traders, freelancers and micro businesses getting started. Single user, price includes VAT.",
         features: ["Create invoices in seconds", "Track what you are owed", "Automatic bank feeds", "Work from anywhere on the mobile app"],
       },
       {
-        name: "Accounting Standard",
-        price: 435,
+        name: "Standard",
+        price: 490,
         period: "month",
-        description: "Full bookkeeping with VAT returns. Two users and one company included, price includes VAT.",
-        features: ["Everything in Start", "VAT return calculations for SARS eFiling", "Automatic bank reconciliation", "Up to 5 users (extra users R75 per month)", "Receipt capture with AutoEntry"],
+        description:
+          "For small businesses working with suppliers, managing inventory or trading in multiple currencies. Two to five users, price includes VAT.",
+        features: ["Everything in Start", "VAT return calculations for SARS eFiling", "Automatic bank reconciliation", "From 2 to 5 users (extra users R85 per month)", "Receipt capture with AutoEntry"],
         highlighted: true,
       },
     ],
@@ -108,7 +113,7 @@ export const placeholderSoftware: Software[] = [
       "Accountant access",
       "Receipt capture with AutoEntry",
     ],
-    integrations: ["Sage Business Cloud Payroll", "Sage HR", "AutoEntry", "Stripe", "PayPal", "Yoco", "Shopify"],
+    integrations: ["Sage Payroll", "Sage HR", "AutoEntry", "Stripe", "PayPal", "Yoco", "Shopify"],
     vendor_name: "Sage",
     vendor_website: "https://www.sage.com/en-za/sage-business-cloud/accounting/",
     founded_year: 1981,
@@ -465,7 +470,7 @@ export const placeholderSoftware: Software[] = [
     ],
     integrations: ["Sage Pastel Payroll", "Sage Connect", "Sage Intelligence", "Microsoft Excel"],
     vendor_name: "Sage",
-    vendor_website: "https://shop.sage.co.za/product/sage-50cloud-pastel/",
+    vendor_website: "https://www.sage.com/en-za/products/sage-50cloud-pastel/",
     founded_year: 1989,
     support_types: ["Phone", "Email", "Knowledge base", "Local SA support line"],
     countries_available: ["South Africa", "Namibia", "Botswana"],
@@ -507,7 +512,7 @@ export const placeholderSoftware: Software[] = [
       "ETI (Employment Tax Incentive) handling",
       "Xero and Sage Accounting journal integration",
     ],
-    integrations: ["Xero", "Sage Business Cloud Accounting", "QuickBooks Online"],
+    integrations: ["Xero", "Sage Accounting", "QuickBooks Online"],
     vendor_name: "SimplePay",
     vendor_website: "https://www.simplepay.co.za/",
     founded_year: 2009,
@@ -562,7 +567,7 @@ export const placeholderSoftware: Software[] = [
     tagline: "Trusted desktop payroll for South African employers of up to 500 staff",
     description_short:
       "Established desktop payroll with SARS statutory tables, EMP201 and EMP501 support and IRP5 printing, backed by Sage's local network.",
-    description_full: `<p>Sage Pastel Payroll remains a fixture in South African back offices, and for good reason. Statutory updates keep PAYE, UIF and SDL calculations aligned with SARS, monthly EMP201 figures come straight out of the product, EMP501 reconciliations and IRP5 certificates are handled with exports ready for e@syFile, and the software caters for up to 500 employees on a single licence.</p><p>The product is sold as an annual licence on the official Sage shop, priced by headcount. A licence for 10 employees costs R4,476 per year, which works out to under R400 a month. From there the tiers step up: R10,656 for 20 employees, R12,648 for 30, R16,560 for 50, R19,644 for 70, R23,844 for 100 and R30,600 for 150. Sage regularly runs a promotion that gives 20% off Pastel Payroll when you buy any Sage 50cloud Pastel product, which many businesses use to pair the two.</p><p>It integrates with the Sage 50c Partner general ledger, supports multiple pay frequencies, emails payslips directly to staff and handles the Employment Tax Incentive. For employers who prefer the control of desktop software with a proper local support network behind it, this is the established option. Employers who would rather have automatic legislative updates in the cloud should look at Sage Business Cloud Payroll instead.</p>`,
+    description_full: `<p>Sage Pastel Payroll remains a fixture in South African back offices, and for good reason. Statutory updates keep PAYE, UIF and SDL calculations aligned with SARS, monthly EMP201 figures come straight out of the product, EMP501 reconciliations and IRP5 certificates are handled with exports ready for e@syFile, and the software caters for up to 500 employees on a single licence.</p><p>The product is sold as an annual licence on the official Sage shop, priced by headcount. A licence for 10 employees costs R4,476 per year, which works out to under R400 a month. From there the tiers step up: R10,656 for 20 employees, R12,648 for 30, R16,560 for 50, R19,644 for 70, R23,844 for 100 and R30,600 for 150. Sage regularly runs a promotion that gives 20% off Pastel Payroll when you buy any Sage 50cloud Pastel product, which many businesses use to pair the two.</p><p>It integrates with the Sage 50c Partner general ledger, supports multiple pay frequencies, emails payslips directly to staff and handles the Employment Tax Incentive. For employers who prefer the control of desktop software with a proper local support network behind it, this is the established option. Employers who would rather have automatic legislative updates in the cloud should look at Sage Payroll instead.</p>`,
     starting_price: 4476,
     billing_period: "year",
     pricing_plans: [
@@ -586,7 +591,7 @@ export const placeholderSoftware: Software[] = [
     ],
     integrations: ["Sage 50cloud Pastel", "Microsoft Excel"],
     vendor_name: "Sage",
-    vendor_website: "https://shop.sage.co.za/payroll-software/",
+    vendor_website: "https://www.sage.com/en-za/products/sage-pastel-payroll/",
     founded_year: 1989,
     support_types: ["Phone", "Email", "Knowledge base", "Local SA support line"],
     countries_available: ["South Africa", "Namibia", "Botswana"],
@@ -594,20 +599,18 @@ export const placeholderSoftware: Software[] = [
   }),
   sw({
     id: "sw-sage-payroll",
-    name: "Sage Business Cloud Payroll",
+    name: "Sage Payroll",
     slug: "sage-business-cloud-payroll",
     category_id: "cat-payroll",
-    tagline: "Online payroll from R90 a month with legislation that updates itself",
+    tagline: "Online payroll from R97 a month with legislation that updates itself",
     description_short:
       "Cloud payroll for South African startups and small businesses: automatic legislative updates, UIF declarations, email payslips and unlimited companies.",
-    description_full: `<p>Sage Business Cloud Payroll is Sage's answer for South African employers who want payroll done in the browser without worrying about year end software updates. Legislative changes ship automatically in the cloud, so PAYE, UIF and SDL calculations are always current with SARS, and the pay run itself is a guided process that a small business owner can complete without payroll training.</p><p>The pricing is tiered purely by headcount and is easy to budget for. Two employees cost R90 per month including VAT. Ten employees cost R401, twenty five cost R951, fifty cost R1,712, one hundred cost R3,014 and the top tier of two hundred employees costs R4,182 per month. Every tier includes unlimited companies and unlimited users, which makes it particularly attractive for bookkeepers and accountants running payroll for several clients from one login.</p><p>Weekly, fortnightly and monthly pay cycles are all supported, payslips go out by email, UIF declarations are generated for the Department of Employment and Labour, leave is managed in the product and ACB payment files come out ready for the bank. Calculations happen in real time, so you can see the effect of a change before you commit the run. It integrates directly with Sage Accounting for the general ledger, and you can try a demo company free for 30 days without entering a card.</p>`,
-    starting_price: 90,
+    description_full: `<p>Sage Payroll, which many South African employers still know by its former name Sage Business Cloud Payroll, is Sage's answer for businesses that want payroll done in the browser without worrying about year end software updates. Legislative changes ship automatically in the cloud, so PAYE, UIF and SDL calculations are always current with SARS, and the pay run itself is a guided process that a small business owner can complete without payroll training.</p><p>The pricing is tiered purely by headcount, which makes it straightforward to budget for. The entry band covers one to two employees at R97 per month including VAT, and the bands step up from there through 3 to 5, 6 to 10, 11 to 15 and on in similar increments to 200 and above. Every tier includes unlimited companies and unlimited users, which makes it particularly attractive for bookkeepers and accountants running payroll for several clients from one login. Sage reviews these bands from time to time, so check the current rate for your headcount on Sage's own pricing page before you budget.</p><p>Weekly, fortnightly and monthly pay cycles are all supported, payslips go out by email, UIF declarations are generated for the Department of Employment and Labour, leave is managed in the product and ACB payment files come out ready for the bank. Calculations happen in real time, so you can see the effect of a change before you commit the run. It integrates directly with Sage Accounting for the general ledger, and you can try a demo company free for 30 days without entering a card.</p>`,
+    starting_price: 97,
     free_trial: true,
     pricing_plans: [
-      { name: "2 employees", price: 90, period: "month", description: "Full product for up to 2 employees. Price includes VAT.", features: ["Automatic legislative updates", "Unlimited companies and users", "Email payslips", "UIF declarations"], highlighted: true },
-      { name: "10 employees", price: 401, period: "month", description: "Up to 10 employees. Price includes VAT.", features: ["Weekly, fortnightly and monthly cycles", "Leave management", "Real time calculations"] },
-      { name: "25 employees", price: 951, period: "month", description: "Up to 25 employees. Price includes VAT.", features: ["Predefined legislative and payroll reports", "ACB payment files", "Integrates with Sage Accounting"] },
-      { name: "50 employees", price: 1712, period: "month", description: "Up to 50 employees. Larger tiers run to 200 employees at R4,182 per month.", features: ["Everything in smaller tiers", "Scales to 200 employees"] },
+      { name: "1-2 employees", price: 97, period: "month", description: "Entry band for start ups and very small teams. Price includes VAT.", features: ["Automatic legislative updates", "Unlimited companies and users", "Email payslips", "UIF declarations"], highlighted: true },
+      { name: "3 to 200+ employees", price: null, price_label: "Tiered", period: "month", description: "Bands step up through 3-5, 6-10, 11-15 and on to 200 and above. Sage publishes the current rate for each band.", features: ["Weekly, fortnightly and monthly cycles", "Leave management", "Real time calculations", "Predefined legislative and payroll reports", "ACB payment files", "Integrates with Sage Accounting"] },
     ],
     top_features: ["Automatic legislative updates in the cloud", "Unlimited companies and users on every tier", "UIF declarations and email payslips built in", "30 day free trial with no card required"],
     features: [
@@ -641,7 +644,7 @@ export const placeholderSoftware: Software[] = [
     tagline: "Modular HR from R28 per employee that grows with your team",
     description_short:
       "Leave, performance, shift scheduling, timesheets and recruitment in modules you switch on as needed, priced in rand per employee per month.",
-    description_full: `<p>Sage HR takes a modular approach that suits how South African businesses actually grow. You start with the core module, which covers the employee database, leave management and approvals, then switch on extra modules only when the team needs them. Nothing forces you into a bloated suite on day one.</p><p>The South African pricing is published openly on Sage's own calculator and is charged per employee per month, excluding VAT. Core HR with leave management costs R28. Timesheets add R14, performance management adds R14, shift scheduling adds R14 and expenses add R10, each per employee per month. Recruitment is the exception: it is a flat R1,850 per month for the module regardless of headcount, covering job ads, an applicant pipeline and interview scheduling. So a 20 person company running core HR with performance lands at R840 per month before VAT, which undercuts most international rivals at current exchange rates.</p><p>Employee self service is the heart of the product. Staff request leave, view documents, submit expenses and complete reviews from the mobile app, while managers get org charts, workflows and approvals without the email chains. It sits naturally beside Sage Accounting and Sage Business Cloud Payroll, and there is a 30 day free trial to test it with your own team.</p>`,
+    description_full: `<p>Sage HR takes a modular approach that suits how South African businesses actually grow. You start with the core module, which covers the employee database, leave management and approvals, then switch on extra modules only when the team needs them. Nothing forces you into a bloated suite on day one.</p><p>The South African pricing is published openly on Sage's own calculator and is charged per employee per month, excluding VAT. Core HR with leave management costs R28. Timesheets add R14, performance management adds R14, shift scheduling adds R14 and expenses add R10, each per employee per month. Recruitment is the exception: it is a flat R1,850 per month for the module regardless of headcount, covering job ads, an applicant pipeline and interview scheduling. So a 20 person company running core HR with performance lands at R840 per month before VAT, which undercuts most international rivals at current exchange rates.</p><p>Employee self service is the heart of the product. Staff request leave, view documents, submit expenses and complete reviews from the mobile app, while managers get org charts, workflows and approvals without the email chains. It sits naturally beside Sage Accounting and Sage Payroll, and there is a 30 day free trial to test it with your own team.</p>`,
     starting_price: 28,
     billing_period: "employee/month",
     free_trial: true,
@@ -664,7 +667,7 @@ export const placeholderSoftware: Software[] = [
       "Org chart",
       "Reports and analytics",
     ],
-    integrations: ["Sage Accounting", "Sage Business Cloud Payroll", "Slack", "Google Workspace", "Microsoft 365"],
+    integrations: ["Sage Accounting", "Sage Payroll", "Slack", "Google Workspace", "Microsoft 365"],
     vendor_name: "Sage",
     vendor_website: "https://www.sage.com/en-za/sage-business-cloud/hr/",
     founded_year: 2015,
@@ -1751,10 +1754,10 @@ export const placeholderSoftware: Software[] = [
       "Custom payslip and report layouts",
       "General ledger integration with Sage accounting",
     ],
-    integrations: ["Sage 200 Evolution", "Sage Business Cloud Accounting", "Sage 300 People", "e@syFile", "SARS eFiling"],
+    integrations: ["Sage 200 Evolution", "Sage Accounting", "Sage 300 People", "e@syFile", "SARS eFiling"],
     brand_color: "#00A046",
     vendor_name: "Sage",
-    vendor_website: "https://www.sage.com/en-za/products/sage-vip-payroll/",
+    vendor_website: "https://sagepayrollprofessional.com/",
     founded_year: 1981,
     support_types: ["Email", "Phone", "Local SA support line", "Knowledge base", "Sage business partner network"],
     countries_available: ["South Africa", "Namibia", "Botswana", "Eswatini", "Lesotho"],
@@ -1826,7 +1829,7 @@ export const placeholderSoftware: Software[] = [
     integrations: ["Salesforce", "Sage HR", "Stripe", "Bill.com", "Power BI", "Open API"],
     brand_color: "#00A046",
     vendor_name: "Sage",
-    vendor_website: "https://www.sage.com/en-za/products/sage-intacct/",
+    vendor_website: "https://www.sage.com/en-za/sage-business-cloud/intacct/",
     founded_year: 1999,
     support_types: ["Email", "Phone", "Knowledge base", "Sage business partner network"],
     countries_available: ["South Africa", "Global"],
@@ -1862,7 +1865,7 @@ export const placeholderSoftware: Software[] = [
     integrations: ["Sage Payroll Professional", "Sage CRM", "Microsoft 365", "Power BI", "EDI providers"],
     brand_color: "#00A046",
     vendor_name: "Sage",
-    vendor_website: "https://www.sage.com/en-za/products/sage-x3/",
+    vendor_website: "https://www.sage.com/en-za/sage-business-cloud/sage-x3/",
     founded_year: 1981,
     support_types: ["Email", "Phone", "Knowledge base", "Sage business partner network"],
     countries_available: ["South Africa", "Global"],
@@ -1895,7 +1898,7 @@ export const placeholderSoftware: Software[] = [
       "Cloud or on premise hosting",
       "Mobile access",
     ],
-    integrations: ["Sage 200 Evolution", "Sage Business Cloud Accounting", "Microsoft 365", "Outlook", "Mailchimp"],
+    integrations: ["Sage 200 Evolution", "Sage Accounting", "Microsoft 365", "Outlook", "Mailchimp"],
     brand_color: "#00A046",
     vendor_name: "Sage",
     vendor_website: "https://www.sage.com/en-za/products/sage-crm/",
@@ -1931,7 +1934,7 @@ export const placeholderSoftware: Software[] = [
       "Secure engagement file storage",
       "Standards updates maintained by CaseWare Africa",
     ],
-    integrations: ["Sage 200 Evolution", "Sage Business Cloud Accounting", "Xero", "Pastel", "Excel"],
+    integrations: ["Sage 200 Evolution", "Sage Accounting", "Xero", "Pastel", "Excel"],
     brand_color: "#0091A0",
     vendor_name: "CaseWare Africa",
     vendor_website: "https://www.casewareafrica.com/",
@@ -1971,7 +1974,7 @@ export const placeholderSoftware: Software[] = [
       "Rand based annual pricing",
       "Local South African support",
     ],
-    integrations: ["Sage Business Cloud Accounting", "Pastel", "Xero", "QuickBooks Online", "Excel"],
+    integrations: ["Sage Accounting", "Pastel", "Xero", "QuickBooks Online", "Excel"],
     brand_color: "#1F9E5A",
     vendor_name: "Draftworx",
     vendor_website: "https://www.draftworx.com/",
@@ -2007,7 +2010,7 @@ export const placeholderSoftware: Software[] = [
       "Offline capture with later sync",
       "Manager dashboards",
     ],
-    integrations: ["Sage 200 Evolution", "Sage Business Cloud Accounting", "Xero", "QuickBooks Online", "SYSPRO"],
+    integrations: ["Sage 200 Evolution", "Sage Accounting", "Xero", "QuickBooks Online", "SYSPRO"],
     brand_color: "#12B5AE",
     vendor_name: "Skynamo",
     vendor_website: "https://www.skynamo.com/",
@@ -2044,7 +2047,7 @@ export const placeholderSoftware: Software[] = [
       "Reporting and dashboards",
       "Role based user access",
     ],
-    integrations: ["Sage Business Cloud Accounting", "Yoco", "Shopify", "WooCommerce", "Excel"],
+    integrations: ["Sage Accounting", "Yoco", "Shopify", "WooCommerce", "Excel"],
     brand_color: "#EF5C2B",
     vendor_name: "QuickEasy Software",
     vendor_website: "https://www.quickeasy.co.za/",
@@ -2085,7 +2088,7 @@ export const placeholderSoftware: Software[] = [
       "Optional outsourced bureau service",
       "Local South African support",
     ],
-    integrations: ["Sage Business Cloud Accounting", "Xero", "e@syFile", "SARS eFiling"],
+    integrations: ["Sage Accounting", "Xero", "e@syFile", "SARS eFiling"],
     brand_color: "#0A66B0",
     vendor_name: "Paymaster People Solutions",
     vendor_website: "https://www.paymaster.co.za/",

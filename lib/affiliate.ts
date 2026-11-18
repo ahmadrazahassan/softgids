@@ -147,10 +147,29 @@ export type AffiliateProgram = keyof typeof AFFILIATE_PROGRAMS;
  */
 export const SAGE_AFFILIATE_URL = AFFILIATE_PROGRAMS.sage.url;
 
-/** Vendor names we hold a contract with, mapped to their programme. */
-const PROGRAM_BY_VENDOR: Record<string, AffiliateProgram> = {
-  Sage: "sage",
+/**
+ * Which PRODUCTS each programme actually sells, by slug.
+ *
+ * Deliberately per product rather than per vendor. The Impact campaign is a
+ * Sage Accounting campaign: every creative in the ad export lands on
+ * /cp/accounting-offers/ or the Sage Accounting product page. Monetising the
+ * whole Sage catalogue off the vendor name meant someone reading about Sage X3
+ * or Sage CRM clicked "Visit website" and arrived at a small business
+ * accounting offer — the wrong product, which is both a bad referral and
+ * something an affiliate manager will rightly object to.
+ *
+ * Anything not listed here renders as a plain `nofollow` link to the vendor's
+ * own page for that product. Add a slug only once the programme genuinely
+ * covers it, and only with the tracking link the network issued for it.
+ */
+const PROGRAM_BY_SLUG: Record<string, AffiliateProgram> = {
+  "sage-business-cloud-accounting": "sage",
 };
+
+/** The programme covering a product, or null when we are not paid for it. */
+export function programForSlug(slug: string): AffiliateProgram | null {
+  return PROGRAM_BY_SLUG[slug] ?? null;
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Placement IDs                                                             */
@@ -235,11 +254,12 @@ export type OutboundLink =
 /**
  * Resolves the outbound link for a product in a given slot.
  *
- * A product whose vendor we have a contract with, or whose `affiliate_url`
- * already points at a tracking domain, gets the monetised link with a
- * placement ID and a `sponsored` rel. Everything else gets the vendor's own
- * website with `nofollow` — marking an unpaid link `sponsored` would be a
- * false disclosure.
+ * A product the programme actually covers (see PROGRAM_BY_SLUG) gets the
+ * monetised link with a placement ID and a `sponsored` rel. Everything else,
+ * including other products from the same vendor, gets that product's own
+ * vendor page with `nofollow` — marking an unpaid link `sponsored` would be a
+ * false disclosure, and sending the reader to a different product than the one
+ * they were reading about is worse.
  *
  * Returns null when there is no destination at all, so callers can skip the
  * CTA rather than render a dead button.
@@ -248,9 +268,10 @@ export function outboundLink(
   software: AffiliateTarget,
   slot: string
 ): OutboundLink | null {
-  const program: AffiliateProgram | null =
-    PROGRAM_BY_VENDOR[software.vendor_name ?? ""] ??
-    (software.affiliate_url && isTrackingUrl(software.affiliate_url) ? "sage" : null);
+  // The slug allowlist is the only thing that monetises a link. A stale
+  // `affiliate_url` left on a row in the database cannot override it, which is
+  // what stops an ERP product quietly pointing at an accounting offer.
+  const program = programForSlug(software.slug);
 
   if (program) {
     const placement = placementId(slot, software.slug);

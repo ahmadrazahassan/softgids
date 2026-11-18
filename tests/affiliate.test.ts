@@ -37,6 +37,7 @@ import {
   isValidPlacement,
   outboundLink,
   placementId,
+  programForSlug,
 } from "../lib/affiliate";
 import { placeholderSoftware } from "../lib/placeholder/software";
 
@@ -197,7 +198,7 @@ describe("outboundLink", () => {
       assert.equal(link.referrerPolicy, AFFILIATE_REFERRER_POLICY, software.slug);
       assert.ok(!link.rel.includes("noreferrer"), software.slug);
 
-      if (software.vendor_name === "Sage") {
+      if (programForSlug(software.slug)) {
         assert.equal(link.kind, "affiliate", `${software.slug} must be monetised`);
         if (link.kind !== "affiliate") return;
         assert.equal(link.rel, AFFILIATE_REL);
@@ -219,9 +220,9 @@ describe("outboundLink", () => {
     }
   });
 
-  test("a Sage row carries a tracking URL on every slot we render", () => {
-    const sage = placeholderSoftware.find((s) => s.vendor_name === "Sage");
-    assert.ok(sage, "roster must include a Sage product");
+  test("a covered product carries a tracking URL on every slot we render", () => {
+    const sage = placeholderSoftware.find((s) => programForSlug(s.slug));
+    assert.ok(sage, "roster must include a product the programme covers");
 
     const slots = [
       "home-card",
@@ -246,6 +247,51 @@ describe("outboundLink", () => {
       placements.add(link.placement);
     }
     assert.equal(placements.size, slots.length, "each slot must report distinctly");
+  });
+
+  test("a vendor's other products are NOT sent to the covered product's offer", () => {
+    // The affiliate manager's complaint, as a guard. The Impact campaign sells
+    // Sage Accounting; every creative lands on an accounting page. Someone
+    // reading about Sage X3 or Sage CRM must not be clicked through to a small
+    // business accounting offer.
+    const sageProducts = placeholderSoftware.filter((s) => s.vendor_name === "Sage");
+    assert.ok(sageProducts.length > 1, "roster must carry several Sage products");
+
+    const uncovered = sageProducts.filter((s) => !programForSlug(s.slug));
+    assert.ok(uncovered.length > 0, "expected Sage products outside the programme");
+
+    for (const software of uncovered) {
+      const link = outboundLink(software, "software-hero");
+      assert.ok(link, software.slug);
+      assert.equal(link.kind, "plain", `${software.slug} is not sold by this programme`);
+      assert.ok(
+        !isTrackingUrl(link.href),
+        `${software.slug} must link to its own vendor page, not a tracking URL`
+      );
+      assert.ok(!link.rel.includes("sponsored"), software.slug);
+      // And it must point at a page about THAT product.
+      assert.ok(
+        /^https:\/\//.test(link.href),
+        `${software.slug} needs a real vendor URL, got "${link.href}"`
+      );
+    }
+  });
+
+  test("a stale affiliate_url in the data cannot widen the programme", () => {
+    // Rows in Supabase still carry affiliate_url from before the scope was
+    // narrowed. The allowlist, not the column, decides what is monetised.
+    const link = outboundLink(
+      {
+        slug: "sage-x3",
+        vendor_name: "Sage",
+        affiliate_url: "https://sagesouthafrica.pxf.io/KBY30A",
+        vendor_website: "https://www.sage.com/en-za/sage-business-cloud/sage-x3/",
+      },
+      "software-hero"
+    );
+    assert.ok(link);
+    assert.equal(link.kind, "plain");
+    assert.ok(!isTrackingUrl(link.href), link.href);
   });
 
   test("no destination at all yields no link, rather than a dead button", () => {
