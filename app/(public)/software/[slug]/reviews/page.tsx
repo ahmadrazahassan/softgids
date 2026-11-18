@@ -146,6 +146,7 @@ export default async function SoftwareReviewsPage(
             format="halfpage"
             slot="reviews-halfpage"
             slug={software.slug}
+            categorySlug={software.category?.slug}
             className="pt-2"
           />
         </aside>

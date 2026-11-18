@@ -28,6 +28,7 @@ import {
   PLAIN_OUTBOUND_REL,
   SAGE_CAMPAIGN_ID,
   SUB_ID_PARAM,
+  adFitsCategory,
   affiliateAriaLabel,
   affiliateHref,
   bannerHref,
@@ -336,6 +337,28 @@ describe("banner creatives", () => {
 
   test("the default video creative exists", () => {
     assert.ok(AFFILIATE_VIDEO_ADS[DEFAULT_VIDEO_AD], DEFAULT_VIDEO_AD);
+  });
+
+  test("creatives only run where the product they sell is relevant", () => {
+    // Every creative in this programme sells small business accounting. They
+    // used to render on every product page, which put a Sage Accounting advert
+    // in front of people reading about Jira, Trello, Deel and BambooHR.
+    assert.ok(adFitsCategory("accounting-software"), "accounting pages must carry it");
+
+    for (const category of [
+      "project-management",
+      "hr-software",
+      "crm-software",
+      "erp-software",
+      "payroll-software",
+    ]) {
+      assert.ok(!adFitsCategory(category), `${category} must not carry an accounting creative`);
+    }
+
+    // A page with no category resolved must not fall through to showing one.
+    assert.ok(!adFitsCategory(null));
+    assert.ok(!adFitsCategory(undefined));
+    assert.ok(!adFitsCategory(""));
   });
 
   test("a banner renders through the same attributes as a text link", () => {

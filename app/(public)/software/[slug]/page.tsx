@@ -504,6 +504,7 @@ export default async function SoftwareProfilePage(props: PageProps<"/software/[s
             format="billboard"
             slot="software-billboard"
             slug={software.slug}
+            categorySlug={categorySlug}
           />
 
           {/* Alternatives */}

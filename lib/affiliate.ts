@@ -386,6 +386,26 @@ export const AFFILIATE_BANNERS = {
 export type BannerFormat = keyof typeof AFFILIATE_BANNERS;
 
 /**
+ * Where a Sage creative is allowed to run, by category slug.
+ *
+ * Every creative in the programme sells small business ACCOUNTING. They were
+ * previously rendered on every product page on the site, which put a Sage
+ * Accounting advert in front of people reading about Jira, Trello, Asana,
+ * Deel, BambooHR and Salesforce — project management, HR and CRM audiences
+ * with no interest in it. That is wasted inventory for us and the wrong
+ * product in front of the wrong reader for Sage.
+ *
+ * Widening this is a one line change, but only widen it to categories the
+ * creative genuinely speaks to.
+ */
+export const SPONSORED_AD_CATEGORIES: readonly string[] = ["accounting-software"];
+
+/** True when a Sage creative belongs on a page in this category. */
+export function adFitsCategory(categorySlug?: string | null): boolean {
+  return Boolean(categorySlug && SPONSORED_AD_CATEGORIES.includes(categorySlug));
+}
+
+/**
  * The vertical video creatives, served as Impact's own ad-code iframe. They
  * carry no anchor of ours, so no placement ID can be attached: conversions
  * land under the campaign rather than a sub ID.

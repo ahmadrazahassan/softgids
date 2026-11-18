@@ -4,6 +4,7 @@ import {
   AFFILIATE_BANNERS,
   AFFILIATE_VIDEO_ADS,
   DEFAULT_VIDEO_AD,
+  adFitsCategory,
   bannerImageSrc,
   bannerLink,
   placementId,
@@ -37,6 +38,7 @@ export function SponsoredAd({
   video = DEFAULT_VIDEO_AD,
   slot,
   slug,
+  categorySlug,
   className,
 }: {
   /**
@@ -51,8 +53,17 @@ export function SponsoredAd({
   slot: string;
   /** The product page it sits on, so reporting can attribute the banner. */
   slug?: string | null;
+  /**
+   * Category of the page this sits on. The unit renders only where the
+   * creative is relevant — see SPONSORED_AD_CATEGORIES.
+   */
+  categorySlug?: string | null;
   className?: string;
 }) {
+  // An accounting advert on a project management page is the wrong product in
+  // front of the wrong reader. Render nothing rather than fill the slot.
+  if (!adFitsCategory(categorySlug)) return null;
+
   return (
     <aside
       aria-label="Sponsored"
