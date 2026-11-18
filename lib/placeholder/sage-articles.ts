@@ -61,34 +61,35 @@ export const sageArticles: Article[] = [
 <p>Sage Accounting, which many owners still call Sage One or Sage Business Cloud Accounting, is one of the most widely used online accounting products in the country. The good news for anyone comparing options is that Sage publishes its South African pricing openly and quotes it including VAT, which makes budgeting refreshingly honest. Let us walk through it.</p>
 <h2>The two core plans</h2>
 <p>Sage Accounting comes in two plans for small businesses. The names are simple and so is the split between them.</p>
-<p><strong>Accounting Start</strong> costs R240 per month including VAT. It is built for one person who needs to quote, invoice and reconcile the bank. If you are a sole proprietor, a freelancer or a very small owner run business that mainly needs to look professional and stay on top of who owes you money, Start covers the essentials without asking you to pay for features you will never open.</p>
-<p><strong>Accounting Standard</strong> costs from R435 per month including VAT. It begins at two users and one company, and it is where the real bookkeeping lives. Standard adds VAT return preparation, full supplier and stock processing, automatic bank reconciliation and receipt capture through AutoEntry. For any business that is registered for VAT or that works with a bookkeeper or accountant, Standard is the sensible starting point rather than Start.</p>
+<p><strong>Start</strong> costs from R270 per month including VAT. It is built for one person who needs to quote, invoice and reconcile the bank. If you are a VAT registered sole proprietor, a freelancer or a very small owner run business that mainly needs to look professional and stay on top of who owes you money, Start covers the essentials without asking you to pay for features you will never open.</p>
+<p><strong>Standard</strong> costs from R490 per month including VAT. It covers two to five users, and it is where the real bookkeeping lives. Standard adds VAT return preparation, full supplier and stock processing, automatic bank reconciliation and receipt capture through AutoEntry. For any business that is registered for VAT or that works with a bookkeeper or accountant, Standard is the sensible starting point rather than Start.</p>
 <p>Here is the core comparison in one place.</p>
 <table>
 <tr><th>Plan</th><th>Price per month (incl VAT)</th><th>Users included</th><th>Best for</th></tr>
-<tr><td>Accounting Start</td><td>R240</td><td>1</td><td>Sole proprietors and freelancers who quote and invoice</td></tr>
-<tr><td>Accounting Standard</td><td>From R435</td><td>2 (up to 5)</td><td>VAT registered businesses and anyone working with an accountant</td></tr>
+<tr><td>Start</td><td>From R270</td><td>1</td><td>Sole proprietors and freelancers who quote and invoice</td></tr>
+<tr><td>Standard</td><td>From R490</td><td>2 to 5</td><td>VAT registered businesses and anyone working with an accountant</td></tr>
 </table>
 <h2>The modules that change the real price</h2>
 <p>The plan fee is only part of the story. Sage Accounting follows a modular approach, which means you switch on extra capability as you need it and pay for it separately. This keeps the base price low, but it also means the sticker price is rarely the final price. Here are the common add on modules and what they cost per month.</p>
 <table>
 <tr><th>Add on module</th><th>Price per month</th><th>What it does</th></tr>
-<tr><td>Additional user</td><td>R75</td><td>Adds a login for a staff member, bookkeeper or partner</td></tr>
-<tr><td>Additional company</td><td>R410</td><td>Runs a second business or entity in the same account</td></tr>
-<tr><td>Advanced inventory</td><td>R415</td><td>Deeper stock tracking for businesses that hold goods</td></tr>
-<tr><td>Debtors Manager</td><td>R290</td><td>Structured collections and follow up on overdue accounts</td></tr>
-<tr><td>Time tracking</td><td>R165</td><td>Records billable hours for service businesses</td></tr>
-<tr><td>Foreign currency</td><td>R165</td><td>Invoices and processes in currencies other than the rand</td></tr>
+<tr><td>Additional user</td><td>R85</td><td>Adds a login for a staff member, bookkeeper or partner</td></tr>
+<tr><td>Additional company</td><td>R460</td><td>Runs a second business or entity in the same account</td></tr>
+<tr><td>Advanced inventory</td><td>R465</td><td>Deeper stock tracking for businesses that hold goods</td></tr>
+<tr><td>Debtors Manager</td><td>R325</td><td>Structured collections and follow up on overdue accounts</td></tr>
+<tr><td>Time tracking</td><td>R185</td><td>Records billable hours for service businesses</td></tr>
+<tr><td>Multiple currencies</td><td>R185</td><td>Takes payments in currencies other than the rand</td></tr>
+<tr><td>Extra storage (1GB)</td><td>R20</td><td>More room for attachments and supporting documents</td></tr>
 </table>
-<p>The lesson here is to add up your real configuration before you compare Sage against anything else. A service business that wants Standard, one extra user and time tracking is looking at R435 plus R75 plus R165, which comes to R675 per month including VAT. That is still competitive, but it is not R435, and knowing the true figure keeps your comparison honest.</p>
+<p>The lesson here is to add up your real configuration before you compare Sage against anything else. A service business that wants Standard, one extra user and time tracking is looking at R490 plus R85 plus R185, which comes to R760 per month including VAT. That is still competitive, but it is not R490, and knowing the true figure keeps your comparison honest.</p>
 <h2>What you are actually paying for</h2>
 <p>It is worth pausing on value rather than price. The reason Sage Accounting holds its place in the South African market is that the localisation is genuine rather than bolted on afterwards. VAT is calculated at the standard 15% rate. VAT returns come out in a format that lines up with what SARS expects on eFiling, so preparing your VAT201 becomes a matter of reading figures across rather than rebuilding them. Bank feeds pull transactions in from the major South African banks, which turns reconciliation from a monthly chore into a quick daily habit.</p>
 <p>You are also paying for local support. Sage runs a South African support line staffed in your own time zone, and the product is backed by an enormous community of local bookkeepers and accountants who already know it inside out. That last point saves real money, because your accountant can work in the software without training, and their hourly rate is part of your total cost of ownership whether you think about it or not.</p>
 <h2>How the cost grows with your business</h2>
 <p>Let us model three realistic South African businesses so you can see where you might land.</p>
-<p><strong>The freelance designer.</strong> One person, not yet registered for VAT, sending ten to fifteen invoices a month. Accounting Start at R240 per month does everything needed. Total: R240.</p>
-<p><strong>The growing services firm.</strong> A VAT registered consultancy with an owner and a part time bookkeeper, tracking billable time. Accounting Standard at R435, one extra user at R75 and time tracking at R165. Total: R675 per month.</p>
-<p><strong>The small distributor.</strong> A VAT registered business holding stock, with an owner, a bookkeeper and an accountant who logs in, plus advanced inventory. Standard at R435, two extra users at R150 and advanced inventory at R415. Total: R1,000 per month.</p>
+<p><strong>The freelance designer.</strong> One person sending ten to fifteen invoices a month. Start at R270 per month does everything needed. Total: R270.</p>
+<p><strong>The growing services firm.</strong> A VAT registered consultancy with an owner and a part time bookkeeper, tracking billable time. Standard at R490, one extra user at R85 and time tracking at R185. Total: R760 per month.</p>
+<p><strong>The small distributor.</strong> A VAT registered business holding stock, with an owner, a bookkeeper and an accountant who logs in, plus advanced inventory. Standard at R490, two extra users at R170 and advanced inventory at R465. Total: R1,125 per month.</p>
 <p>None of these figures will frighten a business that is already turning over enough to need proper books. The point of laying them out is to show that Sage scales in small, predictable steps rather than forcing a big jump between tiers.</p>
 <h2>The trial and the refund</h2>
 <p>Every new Sage Accounting subscription starts with a 30 day free trial, and you do not need to commit to a long contract. Sage also offers a full refund within 30 days of purchase if the product turns out not to fit your business. That combination lets you set the software up with your real data, run a full month end, and only then decide whether it earns its place. Use the trial properly. Load a month of real transactions, connect your bank feed, and prepare a practice VAT return before the trial ends.</p>
@@ -98,11 +99,11 @@ export const sageArticles: Article[] = [
 <p>No accounting software is truly a single line item. Budget for a few things beyond the subscription so there are no surprises.</p>
 <ul>
 <li><strong>Setup time.</strong> Whether you do it yourself or pay a bookkeeper to configure the chart of accounts, VAT settings and opening balances, the first setup takes a few hours of someone's time.</li>
-<li><strong>Payroll.</strong> Sage Accounting is not payroll software. If you employ staff you will pair it with Sage Business Cloud Payroll or Sage Pastel Payroll, which are priced separately by headcount. We cover that choice in our <a href="/blog/sage-payroll-comparison-pastel-vs-cloud">Sage payroll comparison</a>.</li>
+<li><strong>Payroll.</strong> Sage Accounting is not payroll software. If you employ staff you will pair it with Sage Payroll or Sage Pastel Payroll, which are priced separately by headcount. We cover that choice in our <a href="/blog/sage-payroll-comparison-pastel-vs-cloud">Sage payroll comparison</a>.</li>
 <li><strong>Modules you grow into.</strong> The add ons above are optional on day one but often become necessary later, so leave room in the budget as you scale.</li>
 </ul>
 <h2>Is Sage Accounting worth the money</h2>
-<p>For most South African small businesses that are registered for VAT and work with an accountant, Accounting Standard at R435 per month is one of the better value decisions on the market. You get software that speaks fluent SARS, bank feeds that work with local banks, support in your time zone and an accountant who already knows the product. The modular pricing keeps you from overpaying early, and the trial lets you prove the fit before you commit a cent.</p>
+<p>For most South African small businesses that are registered for VAT and work with an accountant, Accounting Standard at R490 per month is one of the better value decisions on the market. You get software that speaks fluent SARS, bank feeds that work with local banks, support in your time zone and an accountant who already knows the product. The modular pricing keeps you from overpaying early, and the trial lets you prove the fit before you commit a cent.</p>
 <p>If you want to see the plans and current pricing directly, our <a href="/software/sage-business-cloud-accounting">Sage Accounting product page</a> lists every tier, and our <a href="/category/accounting-software">accounting software directory</a> lets you line it up against the alternatives on the criteria that matter for a South African business.</p>`,
   }),
 
@@ -126,8 +127,8 @@ export const sageArticles: Article[] = [
 <p>The pricing difference between the two products is significant, and it reflects the different markets they serve. Sage Accounting is entry level cloud software. Sage 50cloud Pastel is a heavier desktop suite priced accordingly.</p>
 <table>
 <tr><th>Product</th><th>Entry price</th><th>Users and companies</th><th>Delivery</th></tr>
-<tr><td>Sage Accounting Start</td><td>R240 per month incl VAT</td><td>1 user</td><td>Cloud</td></tr>
-<tr><td>Sage Accounting Standard</td><td>From R435 per month incl VAT</td><td>2 users, 1 company</td><td>Cloud</td></tr>
+<tr><td>Sage Accounting Start</td><td>R270 per month incl VAT</td><td>1 user</td><td>Cloud</td></tr>
+<tr><td>Sage Accounting Standard</td><td>From R490 per month incl VAT</td><td>2 users, 1 company</td><td>Cloud</td></tr>
 <tr><td>Sage 50cloud Pastel Start</td><td>R1,375 per month or R16,500 per year</td><td>2 users, 2 companies</td><td>Desktop</td></tr>
 <tr><td>Sage 50cloud Pastel Core</td><td>R1,915 per month or R22,980 per year</td><td>4 users, 4 companies</td><td>Desktop</td></tr>
 <tr><td>Sage 50cloud Pastel Plus</td><td>R2,715 per month or R32,580 per year</td><td>5 users, 5 companies</td><td>Desktop</td></tr>
@@ -147,7 +148,7 @@ export const sageArticles: Article[] = [
 <p><strong>Choose Sage 50cloud Pastel if</strong> you have an established finance function, you need serious inventory or multiple companies, you want the reassurance of offline access, your bookkeeper already lives in Pastel, and you are comfortable with a higher spend for greater depth and control.</p>
 <p>There is also a natural upgrade path. Many businesses start on Sage Accounting and move to Pastel or beyond as they grow more complex. If you eventually outgrow Pastel itself, the next step in the Sage family is Sage 200 Evolution, which we cover in our <a href="/blog/sage-200-evolution-erp-south-africa">guide to Evolution for South African businesses</a>.</p>
 <h2>A note on payroll</h2>
-<p>Neither product runs payroll on its own. Sage Accounting pairs with Sage Business Cloud Payroll, and Pastel users often pair with Sage Pastel Payroll. Buying any Sage 50cloud Pastel product currently earns a 20% discount on Pastel Payroll, which many businesses use to bundle the two. We compare the payroll options in our <a href="/blog/sage-payroll-comparison-pastel-vs-cloud">Sage payroll comparison</a>.</p>
+<p>Neither product runs payroll on its own. Sage Accounting pairs with Sage Payroll, and Pastel users often pair with Sage Pastel Payroll. Buying any Sage 50cloud Pastel product currently earns a 20% discount on Pastel Payroll, which many businesses use to bundle the two. We compare the payroll options in our <a href="/blog/sage-payroll-comparison-pastel-vs-cloud">Sage payroll comparison</a>.</p>
 <h2>The bottom line</h2>
 <p>Sage Accounting and Sage Pastel are not competitors so much as two rungs on the same ladder. For most small and growing South African businesses, the cloud based Sage Accounting is the sensible, affordable, flexible choice. For established businesses with real finance departments and heavier needs, Pastel remains the trusted workhorse it has always been. Match the product to the size and shape of your business and the decision becomes clear.</p>
 <p>Compare them side by side on our <a href="/software/sage-business-cloud-accounting">Sage Accounting page</a> and <a href="/software/sage-pastel-accounting">Sage Pastel page</a>, or browse the full <a href="/category/accounting-software">accounting software category</a> to see how both stack up against other options.</p>`,
@@ -284,48 +285,48 @@ export const sageArticles: Article[] = [
   /* ============================================================= 5 */
   art({
     id: "art-sage-payroll-comparison",
-    title: "Sage Pastel Payroll or Sage Business Cloud Payroll: A South African Payroll Comparison",
+    title: "Sage Pastel Payroll or Sage Payroll: A South African Payroll Comparison",
     slug: "sage-payroll-comparison-pastel-vs-cloud",
     excerpt:
-      "Desktop Sage Pastel Payroll or the cloud based Sage Business Cloud Payroll. A rand by rand comparison of pricing, features and fit for South African employers.",
+      "Desktop Sage Pastel Payroll or the cloud based Sage Payroll. A rand by rand comparison of pricing, features and fit for South African employers.",
     category_tag: "Comparisons",
     related_software_id: "sw-sage-payroll",
     featured: true,
     read_time_minutes: 12,
     published_date: "2026-06-05",
     author: LERATO,
-    content: `<p>Sage offers South African employers two very different ways to run payroll, and the names do not make the choice obvious. Sage Pastel Payroll is established desktop software with a licence you buy by headcount. Sage Business Cloud Payroll is a browser based product billed monthly. Both keep you compliant with SARS, and both are backed by Sage's local presence, but they suit different kinds of employer. This comparison lays out the real differences so you can choose with confidence.</p>
+    content: `<p>Sage offers South African employers two very different ways to run payroll, and the names do not make the choice obvious. Sage Pastel Payroll is established desktop software with a licence you buy by headcount. Sage Payroll is a browser based product billed monthly. Both keep you compliant with SARS, and both are backed by Sage's local presence, but they suit different kinds of employer. This comparison lays out the real differences so you can choose with confidence.</p>
 <h2>The core difference</h2>
-<p>As with Sage's accounting products, the fundamental split is desktop versus cloud. Sage Pastel Payroll installs on a machine in your office and has been a fixture in South African back offices for decades. Sage Business Cloud Payroll runs in your browser, updates its legislation automatically, and is aimed at employers who want payroll done without worrying about year end software updates. Everything else flows from that difference.</p>
+<p>As with Sage's accounting products, the fundamental split is desktop versus cloud. Sage Pastel Payroll installs on a machine in your office and has been a fixture in South African back offices for decades. Sage Payroll runs in your browser, updates its legislation automatically, and is aimed at employers who want payroll done without worrying about year end software updates. Everything else flows from that difference.</p>
 <h2>Pricing: two different models</h2>
-<p>The two products are priced in completely different ways, and this often decides the matter. Sage Pastel Payroll is sold as an annual licence priced by the number of employees. Sage Business Cloud Payroll is a monthly subscription, also priced by headcount, but with unlimited companies and unlimited users included at every tier.</p>
+<p>The two products are priced in completely different ways, and this often decides the matter. Sage Pastel Payroll is sold as an annual licence priced by the number of employees. Sage Payroll is a monthly subscription, also priced by headcount, but with unlimited companies and unlimited users included at every tier.</p>
 <table>
-<tr><th>Employees</th><th>Sage Pastel Payroll (per year)</th><th>Sage Business Cloud Payroll (per month, incl VAT)</th></tr>
-<tr><td>2</td><td>Sold from the 10 employee tier</td><td>R90</td></tr>
-<tr><td>10</td><td>R4,476</td><td>R401</td></tr>
-<tr><td>20 to 25</td><td>R10,656 (20)</td><td>R951 (25)</td></tr>
-<tr><td>50</td><td>R16,560</td><td>R1,712</td></tr>
-<tr><td>100</td><td>R23,844</td><td>R3,014</td></tr>
-<tr><td>150 to 200</td><td>R30,600 (150)</td><td>R4,182 (200)</td></tr>
+<tr><th>Employees</th><th>Sage Pastel Payroll (per year)</th><th>Sage Payroll (per month, incl VAT)</th></tr>
+<tr><td>2</td><td>Sold from the 10 employee tier</td><td>R97</td></tr>
+<tr><td>10</td><td>R4,476</td><td>R430</td></tr>
+<tr><td>20 to 25</td><td>R10,656 (20)</td><td>R1,018 (25)</td></tr>
+<tr><td>50</td><td>R16,560</td><td>R1,832</td></tr>
+<tr><td>100</td><td>R23,844</td><td>R3,225</td></tr>
+<tr><td>150 to 200</td><td>R30,600 (150)</td><td>R4,475 (200)</td></tr>
 </table>
-<p>Compare the annual figures fairly. Sage Pastel Payroll for 10 employees costs R4,476 a year, which works out to under R400 a month. Sage Business Cloud Payroll for 10 employees costs R401 a month, or roughly R4,812 a year. At small headcounts the two land close together, but the cloud product includes unlimited companies and users, which matters a great deal for the audience that runs payroll for more than one business.</p>
+<p>Compare the annual figures fairly. Sage Pastel Payroll for 10 employees costs R4,476 a year, which works out to under R400 a month. Sage Payroll for 10 employees costs R430 a month, or roughly R5,160 a year. At small headcounts the two land close together, but the cloud product includes unlimited companies and users, which matters a great deal for the audience that runs payroll for more than one business.</p>
 <h2>Why the cloud product suits bookkeepers and accountants</h2>
-<p>That unlimited companies point deserves emphasis. If you are a bookkeeper or accountant running payroll for several clients, Sage Business Cloud Payroll lets you handle all of them from one login at a single per employee cost, with no separate licence per company. For a practice, this is often the deciding factor. One subscription, many client payrolls, legislation that updates itself in the background.</p>
+<p>That unlimited companies point deserves emphasis. If you are a bookkeeper or accountant running payroll for several clients, Sage Payroll lets you handle all of them from one login at a single per employee cost, with no separate licence per company. For a practice, this is often the deciding factor. One subscription, many client payrolls, legislation that updates itself in the background.</p>
 <h2>SARS compliance: both deliver</h2>
-<p>Whichever you choose, the statutory work is covered, because Sage keeps both products aligned with South African payroll legislation. Both handle PAYE, UIF and SDL calculations, produce the monthly EMP201 figures, support EMP501 reconciliations and IRP5 certificates, and cater for the Employment Tax Incentive. The difference is in how updates reach you. Sage Business Cloud Payroll receives legislative changes automatically in the cloud, so your calculations are always current. Sage Pastel Payroll relies on statutory updates that you apply to the desktop software, which the local support network helps with. For deeper detail on the compliance side, see our <a href="/blog/sage-payroll-sars-compliance-paye-uif-sdl">guide to Sage payroll and SARS</a>.</p>
+<p>Whichever you choose, the statutory work is covered, because Sage keeps both products aligned with South African payroll legislation. Both handle PAYE, UIF and SDL calculations, produce the monthly EMP201 figures, support EMP501 reconciliations and IRP5 certificates, and cater for the Employment Tax Incentive. The difference is in how updates reach you. Sage Payroll receives legislative changes automatically in the cloud, so your calculations are always current. Sage Pastel Payroll relies on statutory updates that you apply to the desktop software, which the local support network helps with. For deeper detail on the compliance side, see our <a href="/blog/sage-payroll-sars-compliance-paye-uif-sdl">guide to Sage payroll and SARS</a>.</p>
 <h2>Where Sage Pastel Payroll pulls ahead</h2>
 <p>Pastel Payroll is the more powerful and established of the two, and larger or more complex employers often prefer it. It caters for up to 500 employees on a single licence, supports multiple pay frequencies, handles more intricate payroll scenarios, and integrates with the Sage 50c Partner general ledger. For employers who already run Pastel accounting and want everything in the same desktop family, it is the natural companion, especially given the frequent promotion that gives 20% off Pastel Payroll when you buy a Sage 50cloud Pastel product. The desktop model also means the pay run keeps working during an internet outage.</p>
-<h2>Where Sage Business Cloud Payroll pulls ahead</h2>
-<p>The cloud product wins on simplicity, accessibility and low entry cost. Two employees cost just R90 a month including VAT, which makes it one of the most affordable ways for a startup to run compliant payroll. The pay run is a guided process that an owner without payroll training can complete. Payslips go out by email, UIF declarations are generated for the Department of Employment and Labour, leave is managed in the product, and ACB payment files come out ready for the bank. Because it is cloud based, you can run payroll from anywhere, and there is no year end software update to install. You can try a demo company free for 30 days without entering a card.</p>
+<h2>Where Sage Payroll pulls ahead</h2>
+<p>The cloud product wins on simplicity, accessibility and low entry cost. Two employees cost just R97 a month including VAT, which makes it one of the most affordable ways for a startup to run compliant payroll. The pay run is a guided process that an owner without payroll training can complete. Payslips go out by email, UIF declarations are generated for the Department of Employment and Labour, leave is managed in the product, and ACB payment files come out ready for the bank. Because it is cloud based, you can run payroll from anywhere, and there is no year end software update to install. You can try a demo company free for 30 days without entering a card.</p>
 <h2>A simple way to decide</h2>
 <p>Use these guidelines to place your business.</p>
-<p><strong>Choose Sage Business Cloud Payroll if</strong> you are a startup or small business, you want low monthly costs, you value running payroll from anywhere, you run payroll for more than one company, or you want legislation to update itself without any effort on your part.</p>
+<p><strong>Choose Sage Payroll if</strong> you are a startup or small business, you want low monthly costs, you value running payroll from anywhere, you run payroll for more than one company, or you want legislation to update itself without any effort on your part.</p>
 <p><strong>Choose Sage Pastel Payroll if</strong> you are an established employer with a larger or more complex workforce, you already run Pastel accounting, you want the depth and control of the desktop product, or you want the reassurance that the pay run continues during an internet outage.</p>
 <h2>Do not forget the integration picture</h2>
-<p>Payroll does not stand alone. Sage Business Cloud Payroll integrates directly with Sage Accounting for the general ledger, posting its journals into the books automatically, which makes it the obvious pairing if you run cloud accounting. Sage Pastel Payroll pairs with the Pastel accounting family. Whichever route you take, the value is in the two products talking to each other so that your payroll costs land in your accounts without rekeying.</p>
+<p>Payroll does not stand alone. Sage Payroll integrates directly with Sage Accounting for the general ledger, posting its journals into the books automatically, which makes it the obvious pairing if you run cloud accounting. Sage Pastel Payroll pairs with the Pastel accounting family. Whichever route you take, the value is in the two products talking to each other so that your payroll costs land in your accounts without rekeying.</p>
 <h2>The verdict</h2>
-<p>For most small and growing South African employers, and especially for bookkeepers running several client payrolls, Sage Business Cloud Payroll is the practical, affordable, low maintenance choice. For established employers with larger teams, more complex requirements or an existing Pastel setup, Sage Pastel Payroll remains the more capable desktop option. Both keep you on the right side of SARS, which is ultimately what payroll software is there to do.</p>
-<p>See current pricing on our <a href="/software/sage-business-cloud-payroll">Sage Business Cloud Payroll page</a> and <a href="/software/sage-pastel-payroll">Sage Pastel Payroll page</a>, or browse the full <a href="/category/payroll-software">payroll software category</a> to compare against other South African options.</p>`,
+<p>For most small and growing South African employers, and especially for bookkeepers running several client payrolls, Sage Payroll is the practical, affordable, low maintenance choice. For established employers with larger teams, more complex requirements or an existing Pastel setup, Sage Pastel Payroll remains the more capable desktop option. Both keep you on the right side of SARS, which is ultimately what payroll software is there to do.</p>
+<p>See current pricing on our <a href="/software/sage-business-cloud-payroll">Sage Payroll page</a> and <a href="/software/sage-pastel-payroll">Sage Pastel Payroll page</a>, or browse the full <a href="/category/payroll-software">payroll software category</a> to compare against other South African options.</p>`,
   }),
 
   /* ============================================================= 6 */
@@ -341,7 +342,7 @@ export const sageArticles: Article[] = [
     published_date: "2026-05-20",
     author: LERATO,
     content: `<p>South African payroll is its own compliance discipline, and the acronyms come thick and fast. PAYE, UIF, SDL, EMP201, EMP501, IRP5, ETI. Behind each one sits a SARS deadline and a penalty for missing it. The value of good payroll software is that it turns this maze into a monthly routine you can trust. This guide explains what each obligation is, how Sage payroll handles it, and how to build a compliance calendar that keeps you clear of trouble.</p>
-<p>Everything below applies whether you run Sage Business Cloud Payroll in the browser or Sage Pastel Payroll on the desktop. Both keep their statutory calculations aligned with SARS, and both produce the figures and files you need to submit. If you are still choosing between them, our <a href="/blog/sage-payroll-comparison-pastel-vs-cloud">Sage payroll comparison</a> covers that decision.</p>
+<p>Everything below applies whether you run Sage Payroll in the browser or Sage Pastel Payroll on the desktop. Both keep their statutory calculations aligned with SARS, and both produce the figures and files you need to submit. If you are still choosing between them, our <a href="/blog/sage-payroll-comparison-pastel-vs-cloud">Sage payroll comparison</a> covers that decision.</p>
 <h2>The four deductions and contributions you manage</h2>
 <p>Every South African pay run touches four statutory items. Understanding what each one is makes the software make sense.</p>
 <ul>
@@ -382,9 +383,9 @@ export const sageArticles: Article[] = [
 <h2>Keeping records for SARS</h2>
 <p>SARS can review your payroll, and you are required to keep the supporting records for five years. Sage payroll retains your pay runs, payslips and certificates, which means that if a review comes, you can produce a complete and consistent history rather than reconstructing it. Clean records turn a review from a crisis into a formality.</p>
 <h2>When to bring in a payroll professional</h2>
-<p>Software handles the calculations, but judgement still matters. Complex situations such as employees with multiple sources of income, unusual benefits, restructures or retrenchments are worth reviewing with a payroll practitioner or your accountant. Because Sage Business Cloud Payroll is cloud based, a professional can log in and check your setup without you sending anything. Many South African bookkeepers run client payrolls in Sage daily, so this help is easy to arrange.</p>
+<p>Software handles the calculations, but judgement still matters. Complex situations such as employees with multiple sources of income, unusual benefits, restructures or retrenchments are worth reviewing with a payroll practitioner or your accountant. Because Sage Payroll is cloud based, a professional can log in and check your setup without you sending anything. Many South African bookkeepers run client payrolls in Sage daily, so this help is easy to arrange.</p>
 <h2>The bottom line</h2>
-<p>SARS payroll compliance is unforgiving of lateness and error, but it is entirely manageable with the right tool and a simple calendar. Sage payroll calculates PAYE, UIF, SDL and ETI correctly, produces your EMP201 figures every month, and carries the whole year's data into the EMP501 reconciliations and IRP5 certificates. Keep the pay run clean, work to the calendar above, and payroll compliance becomes a routine rather than a recurring worry. See current pricing on our <a href="/software/sage-business-cloud-payroll">Sage Business Cloud Payroll page</a> or explore the full <a href="/category/payroll-software">payroll software category</a>.</p>`,
+<p>SARS payroll compliance is unforgiving of lateness and error, but it is entirely manageable with the right tool and a simple calendar. Sage payroll calculates PAYE, UIF, SDL and ETI correctly, produces your EMP201 figures every month, and carries the whole year's data into the EMP501 reconciliations and IRP5 certificates. Keep the pay run clean, work to the calendar above, and payroll compliance becomes a routine rather than a recurring worry. See current pricing on our <a href="/software/sage-business-cloud-payroll">Sage Payroll page</a> or explore the full <a href="/category/payroll-software">payroll software category</a>.</p>`,
   }),
 
   /* ============================================================= 7 */
@@ -431,7 +432,7 @@ export const sageArticles: Article[] = [
 <li><strong>Add Recruitment if</strong> you are hiring often enough that a proper applicant pipeline saves you time, remembering it is a flat monthly fee.</li>
 </ul>
 <h2>Where Sage HR fits alongside your other Sage products</h2>
-<p>Sage HR is designed to sit naturally beside Sage Accounting and Sage Business Cloud Payroll. The connection to payroll is the important one, because leave and employee data flowing cleanly between HR and payroll removes double capture and the errors that come with it. If you already run Sage for your books and payroll, adding Sage HR keeps everything in one family, which simplifies both administration and support.</p>
+<p>Sage HR is designed to sit naturally beside Sage Accounting and Sage Payroll. The connection to payroll is the important one, because leave and employee data flowing cleanly between HR and payroll removes double capture and the errors that come with it. If you already run Sage for your books and payroll, adding Sage HR keeps everything in one family, which simplifies both administration and support.</p>
 <h2>Who Sage HR is really for</h2>
 <p>Sage HR makes most sense for small and medium South African businesses that have grown past the point where spreadsheets cope, typically from around ten employees upward. If you are still a handful of people who all know each other's leave balances by heart, you may not need it yet. Once you are managing leave for twenty or more, running performance reviews, or scheduling shifts, the time it saves quickly justifies the modest per employee cost. There is a 30 day free trial so you can test it with your own team before committing.</p>
 <h2>A note on getting started</h2>
@@ -446,17 +447,17 @@ export const sageArticles: Article[] = [
     title: "Sage for Sole Proprietors and Freelancers in South Africa: Is It Worth It",
     slug: "sage-for-sole-proprietors-freelancers-south-africa",
     excerpt:
-      "Whether a South African freelancer or sole proprietor really needs Sage Accounting, what Accounting Start gives you for R240 a month, and when to make the move from spreadsheets.",
+      "Whether a South African freelancer or sole proprietor really needs Sage Accounting, what Accounting Start gives you for R270 a month, and when to make the move from spreadsheets.",
     category_tag: "Buying Guides",
     related_software_id: "sw-sage-accounting",
     read_time_minutes: 11,
     published_date: "2026-04-28",
     content: `<p>If you are a freelancer or a sole proprietor in South Africa, you have probably run your finances from a spreadsheet and a shoebox of receipts for as long as you can remember. It works, until it does not. The question this article answers honestly is whether someone running a one person business really needs accounting software like Sage, or whether that is a cost you can happily skip. The answer, as with most things, is that it depends, and we will help you decide.</p>
 <h2>The case for staying on a spreadsheet</h2>
-<p>Let us be fair to the humble spreadsheet first. If you send a handful of invoices a month, you are not registered for VAT, your expenses are few and simple, and you are comfortable working out your own income tax at year end, then a well kept spreadsheet may genuinely be enough. There is no shame in keeping things simple when the business is simple. Paying R240 a month for software you barely use is not a virtue.</p>
+<p>Let us be fair to the humble spreadsheet first. If you send a handful of invoices a month, you are not registered for VAT, your expenses are few and simple, and you are comfortable working out your own income tax at year end, then a well kept spreadsheet may genuinely be enough. There is no shame in keeping things simple when the business is simple. Paying R270 a month for software you barely use is not a virtue.</p>
 <p>The trouble is that most freelancers underestimate how quickly simple stops being simple, and how much time the spreadsheet quietly costs them in chasing payments, hunting for receipts and dreading tax season.</p>
 <h2>What Accounting Start actually gives you</h2>
-<p>Sage Accounting Start costs R240 per month including VAT and is built precisely for the one person business. It is not a stripped back toy. For that price you get the things that make a small operation look professional and run smoothly.</p>
+<p>Sage Accounting Start costs R270 per month including VAT and is built precisely for the one person business. It is not a stripped back toy. For that price you get the things that make a small operation look professional and run smoothly.</p>
 <ul>
 <li><strong>Professional quotes and invoices</strong> with your logo, sent in seconds and easy to convert from quote to invoice.</li>
 <li><strong>A clear view of who owes you money,</strong> so you stop losing track of unpaid invoices and start getting paid faster.</li>
@@ -477,17 +478,17 @@ export const sageArticles: Article[] = [
 <li><strong>You want to understand your business.</strong> A spreadsheet records what happened. Software shows you patterns, your best months, your biggest costs, so you can make better decisions.</li>
 </ol>
 <h2>Start versus Standard for a one person business</h2>
-<p>Most freelancers and sole proprietors do well on Accounting Start at R240. The moment to consider Accounting Standard at R435 is when you register for VAT, because Standard adds the VAT return preparation and full bookkeeping you then need. Here is the simple split.</p>
+<p>Most freelancers and sole proprietors do well on Accounting Start at R270. The moment to consider Accounting Standard at R490 is when you register for VAT, because Standard adds the VAT return preparation and full bookkeeping you then need. Here is the simple split.</p>
 <table>
 <tr><th>Your situation</th><th>Recommended plan</th><th>Cost per month incl VAT</th></tr>
-<tr><td>Not VAT registered, quoting and invoicing</td><td>Accounting Start</td><td>R240</td></tr>
-<tr><td>VAT registered, need VAT201 returns</td><td>Accounting Standard</td><td>From R435</td></tr>
+<tr><td>Not VAT registered, quoting and invoicing</td><td>Accounting Start</td><td>R270</td></tr>
+<tr><td>VAT registered, need VAT201 returns</td><td>Accounting Standard</td><td>From R490</td></tr>
 </table>
 <p>You are not locked in. Many sole proprietors begin on Start and move up to Standard the month they register for VAT, keeping their history intact. For a full breakdown of every plan and module, see our <a href="/blog/sage-accounting-pricing-south-africa">Sage Accounting pricing guide</a>.</p>
 <h2>Making the switch painless</h2>
 <p>If you decide to move, do it at a clean point such as the start of a tax year or a new month, so your spreadsheet and your software do not overlap awkwardly. Use the 30 day free trial to set things up properly, connect your bank feed, and send a few real invoices before you rely on it. Our <a href="/blog/migrate-spreadsheets-to-sage-accounting">guide to moving from spreadsheets to Sage</a> walks through the whole process, and our <a href="/blog/sage-accounting-setup-guide-south-africa">setup guide</a> gives you a first week plan.</p>
 <h2>So, is it worth it</h2>
-<p>For a genuinely tiny, simple, not VAT registered operation, a spreadsheet may still be fine, and honesty demands we say so. But for the many South African freelancers and sole proprietors who invoice regularly, chase payments, dread tax season or are heading toward VAT registration, Sage Accounting Start at R240 a month is a small price for professional invoicing, automatic bank feeds, and books that are ready whenever SARS asks. The real return is measured in hours saved and stress avoided, and by that measure it is usually worth it. Explore the plans on our <a href="/software/sage-business-cloud-accounting">Sage Accounting page</a>.</p>`,
+<p>For a genuinely tiny, simple, not VAT registered operation, a spreadsheet may still be fine, and honesty demands we say so. But for the many South African freelancers and sole proprietors who invoice regularly, chase payments, dread tax season or are heading toward VAT registration, Sage Accounting Start at R270 a month is a small price for professional invoicing, automatic bank feeds, and books that are ready whenever SARS asks. The real return is measured in hours saved and stress avoided, and by that measure it is usually worth it. Explore the plans on our <a href="/software/sage-business-cloud-accounting">Sage Accounting page</a>.</p>`,
   }),
 
   /* ============================================================= 9 */
@@ -629,9 +630,9 @@ export const sageArticles: Article[] = [
 <p>For a small business, price is rarely the only factor, but it is always a factor. Sage publishes its South African pricing openly and includes VAT, which makes budgeting honest. QuickBooks pricing in rand tends to sit higher at the middle tiers and, importantly, caps the number of users on its lower plans.</p>
 <table>
 <tr><th>Consideration</th><th>Sage Accounting</th><th>QuickBooks Online</th></tr>
-<tr><td>Entry plan</td><td>Accounting Start at R240 per month incl VAT</td><td>Priced in rand, typically higher at comparable tiers</td></tr>
-<tr><td>Core plan</td><td>Accounting Standard from R435 per month incl VAT</td><td>Essentials and Plus tiers, higher in rand</td></tr>
-<tr><td>User model</td><td>Standard includes users, extra users R75 each</td><td>Users capped by plan, higher plans for more users</td></tr>
+<tr><td>Entry plan</td><td>Accounting Start at R270 per month incl VAT</td><td>Priced in rand, typically higher at comparable tiers</td></tr>
+<tr><td>Core plan</td><td>Accounting Standard from R490 per month incl VAT</td><td>Essentials and Plus tiers, higher in rand</td></tr>
+<tr><td>User model</td><td>Standard includes users, extra users R85 each</td><td>Users capped by plan, higher plans for more users</td></tr>
 <tr><td>Pricing transparency</td><td>Published locally, including VAT</td><td>Published, watch for promotional versus ongoing rates</td></tr>
 </table>
 <p>The practical takeaway is that Sage tends to be the more affordable option for a South African small business, especially once you count users, while QuickBooks asks a little more for its reporting strength. For a complete breakdown of Sage plans and modules, see our <a href="/blog/sage-accounting-pricing-south-africa">Sage Accounting pricing guide</a>.</p>
@@ -651,7 +652,7 @@ export const sageArticles: Article[] = [
 <li><strong>Choose QuickBooks if</strong> you need the deepest reporting, you bill by project, you value a polished interface and strong receipt capture, and you have a bookkeeper comfortable configuring it for South African use.</li>
 </ul>
 <h2>Do not forget payroll</h2>
-<p>Neither product includes South African payroll in its core. Sage pairs naturally with Sage Business Cloud Payroll, keeping everything in one family, which is a quiet advantage if payroll matters to you. QuickBooks users typically pair with a specialist local payroll product. Factor this into your decision, because a tidy accounting plus payroll pairing saves real administrative effort. Our <a href="/blog/sage-payroll-comparison-pastel-vs-cloud">Sage payroll comparison</a> covers the Sage options.</p>
+<p>Neither product includes South African payroll in its core. Sage pairs naturally with Sage Payroll, keeping everything in one family, which is a quiet advantage if payroll matters to you. QuickBooks users typically pair with a specialist local payroll product. Factor this into your decision, because a tidy accounting plus payroll pairing saves real administrative effort. Our <a href="/blog/sage-payroll-comparison-pastel-vs-cloud">Sage payroll comparison</a> covers the Sage options.</p>
 <h2>The verdict</h2>
 <p>Both Sage and QuickBooks are good enough that you will not regret either if you match it to your business. For most South African small businesses, Sage is the sensible default thanks to its local heritage, lower and clearer pricing, native VAT201 handling, in country support and deep community of accountants. QuickBooks earns its place for businesses that prize reporting depth and project profitability above all. Line them up on our <a href="/software/sage-business-cloud-accounting">Sage Accounting page</a> and browse the full <a href="/category/accounting-software">accounting software category</a>, and if you want the three way picture, our <a href="/blog/sage-vs-xero-vs-quickbooks-south-africa">Sage, Xero and QuickBooks comparison</a> adds Xero to the mix.</p>`,
   }),
@@ -739,14 +740,14 @@ export const sageArticles: Article[] = [
 </ul>
 <p>The right Sage product depends on how large and complex your retail operation is against this list.</p>
 <h2>Sage Accounting for the smaller shop</h2>
-<p>For a small retailer, a single store, a market trader with a growing operation, or an online shop, Sage Accounting handles the essentials well. It tracks inventory, records sales through invoices, applies VAT at 15% automatically, and gives you reporting on what is selling. The advanced inventory module, available for R415 per month, adds deeper stock tracking for retailers who hold more goods and need tighter control. Paired with automatic bank feeds so that takings and supplier payments reconcile themselves, Sage Accounting keeps a small retail business organised without a heavy system.</p>
+<p>For a small retailer, a single store, a market trader with a growing operation, or an online shop, Sage Accounting handles the essentials well. It tracks inventory, records sales through invoices, applies VAT at 15% automatically, and gives you reporting on what is selling. The advanced inventory module, available for R465 per month, adds deeper stock tracking for retailers who hold more goods and need tighter control. Paired with automatic bank feeds so that takings and supplier payments reconcile themselves, Sage Accounting keeps a small retail business organised without a heavy system.</p>
 <p>For online retailers, Sage Accounting also integrates with tools like Shopify and payment providers such as Yoco and Stripe, which matters if your sales flow through an ecommerce platform or card machine. This lets the money side of your online shop feed into your books rather than living in a separate world.</p>
 <h2>When you need a proper point of sale</h2>
 <p>Once you have a physical shop floor with a till, ringing up sales one invoice at a time stops making sense. This is the point to look at Sage 50cloud Pastel, which offers a point of sale module at R725 per month on top of the base plan. Pastel brings stronger inventory control, the point of sale capability a shop counter needs, and the depth to handle a busier retail operation. It also supports multiple warehouses at R460 per month and serial number tracking at R460 per month, both of which matter as your stock holding grows more complex.</p>
 <p>Here is how the Sage retail options compare at a glance.</p>
 <table>
 <tr><th>Your retail operation</th><th>Recommended Sage product</th><th>Key retail features</th></tr>
-<tr><td>Small shop, market trader or online store</td><td>Sage Accounting, plus advanced inventory at R415</td><td>Stock tracking, VAT, ecommerce integrations</td></tr>
+<tr><td>Small shop, market trader or online store</td><td>Sage Accounting, plus advanced inventory at R465</td><td>Stock tracking, VAT, ecommerce integrations</td></tr>
 <tr><td>Physical shop floor with a till</td><td>Sage 50cloud Pastel, plus point of sale at R725</td><td>Point of sale, stronger inventory, warehouses</td></tr>
 <tr><td>Multiple branches or a growing chain</td><td>Sage 200 Evolution</td><td>Retail POS option, multi branch, full ERP</td></tr>
 </table>
