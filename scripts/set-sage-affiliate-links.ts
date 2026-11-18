@@ -8,9 +8,14 @@
  * pricing, copy and ratings, which is far more blast radius than a link swap
  * needs against a live database.
  *
- * Every Sage product gets the same link, verbatim, from lib/affiliate.ts —
- * nothing is appended per product. Idempotent: rows already holding the exact
- * URL are skipped, so reruns are free.
+ * Only the products the programme actually sells are linked, and any other
+ * Sage row has its affiliate_url cleared. The Impact campaign is a Sage
+ * Accounting campaign, so a tracking URL on Sage X3 or Sage CRM would send a
+ * reader to an offer for a product they were not reading about.
+ * `programForSlug` in lib/affiliate.ts decides which is which.
+ *
+ * The link is used verbatim; nothing is appended per product. Idempotent: rows
+ * already correct are skipped, so reruns are free.
  *
  * Note what this column does and does not do. Rendering never reads
  * `affiliate_url` for an href; `outboundLink()` resolves the programme from
@@ -24,7 +29,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { createClient } from "@supabase/supabase-js";
-import { SAGE_AFFILIATE_URL } from "../lib/affiliate";
+import { SAGE_AFFILIATE_URL, programForSlug } from "../lib/affiliate";
 
 /* ---------- tiny .env.local parser (no dotenv dependency) ---------- */
 function loadEnvLocal() {
@@ -69,33 +74,48 @@ async function main() {
   }
 
   let written = 0;
+  let cleared = 0;
   let skipped = 0;
 
   for (const row of rows) {
-    if (row.affiliate_url === SAGE_AFFILIATE_URL) {
+    // Only the products the programme actually sells carry the link. The rest
+    // are cleared: the campaign is a Sage Accounting campaign, and a tracking
+    // URL sitting on Sage X3 or Sage CRM is how a reader ends up clicking
+    // through to an accounting offer for a product they were not reading about.
+    const covered = Boolean(programForSlug(row.slug));
+    const target = covered ? SAGE_AFFILIATE_URL : null;
+
+    if (row.affiliate_url === target) {
       skipped += 1;
-      console.log(`  = ${row.slug} (already current)`);
+      console.log(`  = ${row.slug} (already correct)`);
       continue;
     }
 
     if (dryRun) {
-      written += 1;
-      console.log(`  ~ ${row.slug}`);
+      if (covered) written += 1;
+      else cleared += 1;
+      console.log(`  ${covered ? "~" : "-"} ${row.slug}`);
       continue;
     }
 
     const { error: updateError } = await db
       .from("software")
-      .update({ affiliate_url: SAGE_AFFILIATE_URL })
+      .update({ affiliate_url: target })
       .eq("id", row.id);
     if (updateError) throw new Error(`${row.slug}: ${updateError.message}`);
 
-    written += 1;
-    console.log(`  + ${row.slug}`);
+    if (covered) {
+      written += 1;
+      console.log(`  + ${row.slug}`);
+    } else {
+      cleared += 1;
+      console.log(`  - ${row.slug} (not sold by this programme, link removed)`);
+    }
   }
 
   console.log(
-    `\n${dryRun ? "[dry run] would update" : "Updated"} ${written} row(s), ${skipped} already current.`
+    `\n${dryRun ? "[dry run] would link" : "Linked"} ${written}, ` +
+      `${dryRun ? "would clear" : "cleared"} ${cleared}, ${skipped} already correct.`
   );
 }
 
